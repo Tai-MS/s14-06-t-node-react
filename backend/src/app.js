@@ -12,9 +12,8 @@ const conectarDB = async() => {
 } 
 
 app.use(express.json());
-
-app.use('/login', loginRoute)
-app.use('/signup', signupRoute)
+app.use('/api/login', loginRoute)
+app.use('/api/signup', signupRoute)
 conectarDB()
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Server is running on port ${process.env.PORT || 3000}`);
