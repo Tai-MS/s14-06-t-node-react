@@ -7,13 +7,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 
-const conectarDB = async() => {
+const connectDB = async() => {
   await dbConnecion()
 } 
 app.use(express.json());
 app.use('/api/login', loginRoute)
 app.use('/api/signup', signupRoute)
-conectarDB()
+connectDB()
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Server is running on port ${process.env.PORT || 3000}`);
 });
