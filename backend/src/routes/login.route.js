@@ -1,12 +1,15 @@
-import express from 'express'
+import express, { Router } from 'express';
+import {check}  from 'express-validator'
 
-const router = express()
+const router = express();
+
 
 router.get('/', (req, res) => {
     res.send('Login get')
 })
 
 router.post('/', (req, res) => {
+    
     res.send('Login post')
 })
 
