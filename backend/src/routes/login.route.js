@@ -1,6 +1,6 @@
-import express, { Router } from 'express';
+import express from 'express';
 import {check}  from 'express-validator'
-import { login } from '../controllers/login.js';
+import { login } from '../controllers/login.controller.js';
 import { validateFields } from '../middlewares/validate-fields.js';
 
 const router = express();
