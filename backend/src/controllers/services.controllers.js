@@ -10,16 +10,26 @@ export const getAllServices = async (req, res) => {
 	}
 };
 
-// crear un nuevo servicio
+// Crear un nuevo servicio
 export const createService = async (req, res) => {
-	const service = new serviceModel({
-		title: req.body.title,
-		description: req.body.description,
-		category: req.body.category,
-		price: req.body.price,
-	});
+	const { title, description, image } = req.body;
 
 	try {
+		const existingService = await serviceModel.findOne({ title });
+
+		if (existingService) {
+			return res
+				.status(400)
+				.json({ message: 'Ya existe un servicio con este título.' });
+		}
+
+		// Si no existe, crear el nuevo servicio
+		const service = new serviceModel({
+			title,
+			description,
+			image,
+		});
+
 		const savedService = await service.save();
 		res.status(201).json(savedService);
 	} catch (error) {

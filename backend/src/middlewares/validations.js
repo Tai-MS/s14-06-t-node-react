@@ -11,7 +11,7 @@ export const validateServices = (req, res, next) => {
 			.isLength({ min: 3, max: 50 })
 			.notEmpty()
 			.withMessage('La descripcion del servicio es requerida'),
-		body('category').notEmpty().withMessage('La categoria es requerida'),
+		/* 	body('category').notEmpty().withMessage('La categoria es requerida'), */
 	];
 
 	// Ejecuta las validaciones
