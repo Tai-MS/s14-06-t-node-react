@@ -1,13 +1,14 @@
-import express from 'express'
+import express from 'express';
+import {check}  from 'express-validator'
+import { login } from '../controllers/login.controller.js';
+import { validateFields } from '../middlewares/validate-fields.js';
 
-const router = express()
+const router = express();
 
-router.get('/', (req, res) => {
-    res.send('Login get')
-})
-
-router.post('/', (req, res) => {
-    res.send('Login post')
-})
+router.post('/', [
+    check('email', 'El correo es obligatorio').isEmail(),
+    check('contraseña', 'La contraseña es obligatoria').not().isEmpty(),
+    validateFields
+], login) 
 
 export default router
