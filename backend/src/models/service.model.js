@@ -8,11 +8,9 @@ const serviceSchema = new mongoose.Schema(
 		},
 		description: {
 			type: String,
-			required: true,
 		},
-		category: {
+		image: {
 			type: String,
-			required: true,
 		},
 	},
 	{ timestamps: true }
