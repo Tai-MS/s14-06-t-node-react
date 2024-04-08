@@ -1,7 +1,8 @@
 import express from 'express'
 import { check } from 'express-validator'
 import { validateFields } from '../middlewares/validate-fields.js'
-import { userPost, usersGet } from '../controllers/user.controller.js'
+import { userPost, usersGet, usersPut } from '../controllers/user.controller.js'
+import { existUserID } from '../helpers/db-validators.js'
 
 const router = express()
 
@@ -19,6 +20,12 @@ router.post('/', [
     check('phone', 'El teléfono es obligatorio').not().isEmpty(),
     check('address', 'La dirección es obligatoria').not().isEmpty(),
     validateFields
-], userPost)
+], userPost);
+
+router.put('/:id', [
+    check('id', 'No es un ID válido').isMongoId(),
+    check('id').custom(existUserID),
+    validateFields
+], usersPut);
 
 export default router

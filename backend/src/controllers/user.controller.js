@@ -29,3 +29,16 @@ export const userPost = async (req, res) => {
     }); 
 
 }
+
+export const usersPut = async (req, res) => {
+
+    const {id} = req.params;
+    const { _id, password, email, ...rest } = req.body;
+
+    const userDB = await userModel.findByIdAndUpdate(id, rest);
+
+    res.json({
+        userDB
+    });
+
+}
