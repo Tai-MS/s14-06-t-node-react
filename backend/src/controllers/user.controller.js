@@ -72,7 +72,7 @@ export const usersPut = async (req, res) => {
         const {id} = req.params;
         const { _id, password, email, ...rest } = req.body;
     
-        const userDB = await userModel.findByIdAndUpdate(id, rest);
+        const userDB = await userModel.findByIdAndUpdate(id, rest, {new:true});
     
         res.json({
             userDB
@@ -92,7 +92,7 @@ export const usersDelete = async (req, res) => {
     try {
         const {id} = req.params;
 
-        const user = await userModel.findByIdAndDelete(id);
+        const user = await userModel.findByIdAndDelete(id, {new:true});
     
         res.json({
             user

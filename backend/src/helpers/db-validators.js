@@ -8,11 +8,9 @@ export const existUserID = async(id) => {
     }
 }
 
-
-export const roleValidation = async (rol, city, service_type, type_of_payment, phone, address) => {
-    const providerRole = 'provider';
-
-    if (rol === providerRole && (!city || !service_type || !type_of_payment || !phone || !address)) {
-        throw new Error('Si el usuario tiene rol de "provider", los campos ciudad, tipo de servicio, tipo de pago, teléfono y dirección son obligatorios');
+export const roleValidation = async (rol) => {
+    const roles = ['ADMIN', 'CLIENT', 'PROVIDER'];
+    if (!roles.includes(rol)) {
+        throw new Error('El rol ingresado no es válido');
     }
-};
+}

@@ -11,9 +11,9 @@ const userSchema = new mongoose.Schema({
   type_of_payment: {type: String, emun: ['Efectivo', 'Débito', 'Crédito']},
   phone: {type: String},
   address: {type: String},
-  calification: {type: Number, default: 0},
+  calification: {type: Number},
   img: {type: String},
-  availability_to_travel: {type: Boolean, default: false},
+  availability_to_travel: {type: Boolean},
   availability_schedule: {type:String, emun: ['full-time', 'part-time', 'flexible', 'weekends', 'nights', 'mornings', 'afternoons', 'evenings', 'nights', '24/7']},
   adquired_services: {type: Schema.Types.ObjectId, ref: 'Service'},
 }); 
