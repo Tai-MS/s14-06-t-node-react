@@ -12,7 +12,7 @@ export default function NoAuthRouter() {
       <Route path="/" element={<Landing />} />
       <Route path="/acceso" element={<Login />} />
       <Route path="/registro" element={<Register />} />
-      <Route path="*" element={<NotFound />} />
+      {/* <Route path="*" element={<NotFound />} /> */}
     </Routes>
   );
 }

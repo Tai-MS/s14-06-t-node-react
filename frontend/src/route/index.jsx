@@ -2,7 +2,7 @@ import React from 'react';
 import { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 import NoAuthRouter from "./NoAuthRouter.jsx";
-//import AuthRouter from "./AuthRouter.jsx";
+import AuthRouter from "./AuthRouter.jsx";
 //import { useIsAuthenticated } from "../hooks/auth";
 
 export default function Navigation() {
@@ -14,7 +14,7 @@ export default function Navigation() {
      <BrowserRouter>
       
         {<NoAuthRouter />}
-        {/* {<AuthRouter />}*/}
+        {<AuthRouter />}
       </BrowserRouter> 
     </Suspense>
   );
