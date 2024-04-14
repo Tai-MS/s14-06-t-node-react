@@ -1,6 +1,7 @@
 import { HeaderLanding } from "../../componentes/landing/HeaderLanding";
 
 
+
 export const Register = () => {
     return (
       <>
