@@ -1,19 +1,23 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import  dbConnecion  from './database/database.js';
-import loginRoute from './routes/login.route.js'
-import usersRoute from './routes/users.route.js'
+import cors from 'cors';
+import dbConnection from './database/database.js';
+import loginRoute from './routes/login.route.js';
+import usersRoute from './routes/users.route.js';
 import serviceRoutes from './routes/services.route.js';
+
 dotenv.config();
 const app = express();
-dbConnecion()
+const PORT = process.env.PORT || 3000;
 
+app.use(cors({ origin: `http://localhost:${PORT}` })); 
 app.use(express.json());
+dbConnection();
 
 app.use('/api/login', loginRoute);
 app.use('/api/users', usersRoute);
 app.use('/services', serviceRoutes);
 
-app.listen(process.env.PORT || 3000, () => {
-	console.log(`Server is running on port ${process.env.PORT || 3000}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
