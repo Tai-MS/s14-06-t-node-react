@@ -16,7 +16,6 @@ export const createService = async (req, res) => {
 		title: req.body.title,
 		description: req.body.description,
 		category: req.body.category,
-		price: req.body.price,
 	});
 
 	try {

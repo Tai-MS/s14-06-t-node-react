@@ -8,11 +8,11 @@ const serviceSchema = new mongoose.Schema(
 		},
 		description: {
 			type: String,
-			required: true,
 		},
 		category: {
 			type: String,
-			required: true,
+			/* type: mongoose.Schema.Types.ObjectId,
+			ref: 'Category', */
 		},
 	},
 	{ timestamps: true }
