@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 
-export const FormRegister = () => {
+const FormRegister = () => {
   const submitForm = async (values) => {
     try {
       await axios.post('http://localhost:8080/api/users/register', values);
@@ -63,3 +63,6 @@ export const FormRegister = () => {
     </div>
   );
 };
+
+
+export default FormRegister;
