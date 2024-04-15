@@ -4,15 +4,16 @@ import { LoginButton } from "../share/LoginButtom";
 import closeWindow from "/images/closeWindow.svg";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-//import { useAuthStore } from '../../hooks/useAuthStore'
+import { useAuthStore } from "../../hooks/useAuthStore";
 
 const FormLogin = () => {
+  const {
+    startLogin} =useAuthStore();
   const history = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
     reset,
   } = useForm({
     defaultValues: {
@@ -23,10 +24,10 @@ const FormLogin = () => {
   });
   const onSubmit = handleSubmit((data) => {
     console.log(data);
-    /*startRegister({
+    startLogin({
             email: data.email,
             password: data.password
-        })*/
+        })
     reset();
   });
   //const { errorMessage, startRegister } = useAuthStore();
