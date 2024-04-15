@@ -2,9 +2,10 @@ import { useAtom } from "jotai";
 import { Link } from "react-router-dom";
 import { mobileMenuAtom } from "../../atoms/atoms.js";
 import clsx from "clsx";
-import { MenuLanding } from "./MenuLanding.jsx";
+import { MenuClient } from "./MenuClient.jsx";
 
-export const HeaderLanding = ({ showMenu }) => {
+
+export const HeaderClient = ({ showMenu }) => {
   const [showMobileMenu, setShowMobileMenu] = useAtom(mobileMenuAtom);
 
   const toggleMenu = () => {
@@ -34,7 +35,7 @@ export const HeaderLanding = ({ showMenu }) => {
               showMobileMenu ? "right-0" : "-right-full"
             )}
           >
-            <MenuLanding />
+            <MenuClient/>
           </nav>
 
           <button type="button" onClick={toggleMenu}>
