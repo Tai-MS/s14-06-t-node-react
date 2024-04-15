@@ -13,6 +13,10 @@ const categorySchema = new mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Service',
 		},
+		user: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
+		},
 	},
 
 	{ timestamps: {} }

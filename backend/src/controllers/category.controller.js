@@ -26,6 +26,19 @@ export const createCategory = async (req, res) => {
 	}
 };
 
+//  obtener una categoria por ID
+export const getCategoryById = async (req, res) => {
+	try {
+		const category = await categoryModel.findById(req.params.id).populate('user');
+		if (!category) {
+			return res.status(404).json({ message: 'Categoria no encontrada' });
+		}
+		res.json(category);
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+};
+
 // eliminar una categoria
 export const deleteCategory = async (req, res) => {
 	try {
