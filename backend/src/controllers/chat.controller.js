@@ -1,4 +1,5 @@
-import { UUID } from 'mongodb';
+import { v4 as uuidv4 } from 'uuid'; // Importar UUID correctamente
+
 import chatModel from '../models/chat.model.js';
 import userModel from '../models/user.model.js';
 
@@ -12,58 +13,55 @@ class ChatController {
         return ChatController.#instance
     }
 
-    async updateDb(user, message, pro){
-        console.log("desde controller", {firstName: pro.firstName, lastName: pro.lastName});
-        console.log("aha ");
-        const newUserChatId = await userModel.updateOne({firstName: customer.firstName},{
-            chatId: UUID
-        })
-        const newElement = new chatModel({
-            customer: {
-                firstName: user.firstName,
-                lastName: user.lastName
-            },
-            proffessional: {
-                firstName: pro.firstName,
-                lastName: pro.lastName
-            },
-            messages: message
-        })
-        await newUserChatId.save()
-        return await newElement.save()
+    async updateDb(message, pro, user){
+        try {
+            const newChatId = user.firstName+pro.firstName
+            const chatExists = await chatModel.findOne({chatId: newChatId})
+            if(!chatExists){
+                await userModel.updateOne({firstName: user.firstName}, {chat: newChatId});
+                const newElement = new chatModel({
+                    chatId: newChatId,
+                    customer: {
+                        firstName: user.firstName,
+                        lastName: user.lastName
+                    },
+                    proffessional: {
+                        firstName: pro.firstName,
+                        lastName: pro.lastName
+                    },
+                    messages: message
+                });
+                return await newElement.save();
+            }else{
+                return await chatModel.updateOne(chatExists, {$push: { messages: message } })
+            }
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
     }
     
     getChatInfo = async (user) => {
         try {
-          const user2 = user.user.firstName; 
-          const chatId = user.chatId; 
-        //   const chat = await chatModel.findById(chatId);
-        //   if (!chat) {
-        //     throw new Error('Chat no encontrado');
-        //   }
-        //   res.status(200).send({ chat });
         } catch (error) {
-        //   res.status(404).send({ error: error.message });
-        return error
-    }
-      };
-    async returnChat(){
-        try {
-            const messages = await chatModel.find({})
+            return error;
+        }
+    };
 
-            const formattedMessages = messages.map(message => ({
-                user: message.user,
-                messages: message
-            }))
-            console.log("return", formattedMessages);
-            return formattedMessages
+    async returnChat(user,pro){
+        try {
+            const newChatId = user.firstName+pro.firstName
+            const chatExists = await chatModel.findOne({chatId: newChatId})
+            if(!chatExists){
+                return 'Chat iniciado.'
+            }else{
+                return chatExists.messages
+            }
         } catch (error) {
-            return error
+            return error;
         }
     }
-
 }
 
 const chatController = new ChatController();
 export default chatController;
- 

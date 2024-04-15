@@ -2,23 +2,20 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
-
 import { validateJWT } from '../middlewares/validate-JWT.js'; 
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const router = express.Router();
 const validatePredefinedToken = async(req, res, next) => {
     const predefinedToken = req.query.token;
-    console.log(        jwt.verify(predefinedToken, process.env.SECRETORPRIVATEKEY));
     try {
         const decoded = jwt.verify(predefinedToken, process.env.SECRETORPRIVATEKEY);
-        console.log(decoded.uid === '66196abfffc619d62aeb5faa');
         const user = await User.findOne({_id: decoded.uid}); 
         if (!user) {
             throw new Error('Usuario no encontrado');
         }
-        console.log(user);
         req.user = user;
         next();
     } catch (error) {
@@ -46,16 +43,19 @@ y tokenGenerado debe ser un token previamente generado en el login
 router.get('/api/:proname', validateJWT, async (req, res) => {
     const proname = req.params.proname;
     const user = req.user.firstName;
-    console.log("Usuario validado:", user);
     res.render('chat', { proname, user });
 });
 
 router.get('/:proname', validatePredefinedToken, async (req, res) => {
     const proname = req.params.proname;
     const user = req.user.firstName;
-    console.log("Usuario validado:", user);
-    res.render('chat', { proname, user });
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjFjNTZiMTBjNDg2NDUxZGYxZTg0MGUiLCJpYXQiOjE3MTMxNDYxOTIsImV4cCI6MTcxMzE1MzM5Mn0.HueZGaunuHx0_Huriic3EGBPUyIOc5bcmM5pdepmSdc"
+
+    res.render('chat', { proname, user, token });
 });
 
+router.post('/:proname', async (req, res) => {
+
+})
 
 export default router;

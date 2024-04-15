@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
   availability_to_travel: {type: Boolean},
   availability_schedule: {type:String, emun: ['full-time', 'part-time', 'flexible', 'weekends', 'nights', 'mornings', 'afternoons', 'evenings', 'nights', '24/7']},
   adquired_services: {type: Schema.Types.ObjectId, ref: 'Service'},
+  chat: {type: String, default: ""}
 }); 
 
 const userModel = mongoose.model('User', userSchema);

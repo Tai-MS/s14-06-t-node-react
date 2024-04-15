@@ -41,16 +41,16 @@ const users = {};
 socketServer.on('connect', async socket => {
   console.log('New client connected');
   app.use((req, res, next) => {
-    console.log('APP.JS', req);
+    // console.log('APP.JS', req);
     next()
   })
   socket.on('newUser', (arr) => {
-    users[socket.id] = arr.username;
+	// console.log("asd");
+	// console.log("arr",arr);
     socketServer.emit('userConnected', arr.username, arr.proffessionalName);
-    console.log(arr);
-
-    chatManager.returnChat().then(messages => {
-        messages.forEach(message => {
+    chatManager.returnChat(pro, userio).then(messages => {
+        // console.log("mensaje",messages);
+		messages.forEach(message => {
             socket.emit('message', { username: message.user, message: message.message });
         });
     }).catch(error => {
@@ -64,20 +64,12 @@ socketServer.on('connect', async socket => {
     if (arr.message.length < 1) {
       socketServer.emit('error');
     } else {
-      console.log("hola",arr.proffessionalName);
-      const userio = await userModel.findOne({firstName: users[socket.id]})
+      const userio = await userModel.findOne({firstName: arr.user})
       const pro = await userModel.findOne({firstName: arr.proffessionalName})
-
-      // console.log("dede app: ", arr.message);
-      socketServer.emit('response', chatManager.updateDb(userio, arr.message, pro));
+      socketServer.emit('response', chatManager.updateDb(arr.message, pro, userio));
       const mes = arr.message
       socketServer.emit('message', { username, mes });
     }
   });
 
-  socket.on('disconnect', () => {
-    const username = users[socket.id];
-    delete users[socket.id];
-    socketServer.emit('userDisconnected', username);
-  });
 });

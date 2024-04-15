@@ -6,6 +6,7 @@ const chatsCollection = "chats";
 const User = userModel;
 
 const chatSchema = new mongoose.Schema({
+  chatId: {type: String, require: true},
   customer: {
     firstName: { type: String, required: [true, 'Missing field: customer first name'] },
     lastName: { type: String, required: [true, 'Missing field: customer last name'] },

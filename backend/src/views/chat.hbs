@@ -10,12 +10,12 @@
 <body>
 
     <div id="chat-form" style="">
-<p>{{user}}</p>
+<p id="usuario">{{user}}</p>
         <h1>Sala de chat</h1>
         <div id="chat-messages"></div>
-        <form action="">
+        <form action="/{{proname}}?token={{token}}" method="POST">
             <input type="text" id="message">
-            <button type="submit">Enviar</button>
+            <button type="button" id="bs">Enviar</button>
         </form>
         <p id="error" style="background-color: red; color: black; width: 200px; font-size: 24px"></p>
     </div>
