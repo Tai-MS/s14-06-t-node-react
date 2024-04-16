@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const FormRegister = () => {
   const submitForm = async (values) => {
+    console.log(values)
     try {
       await axios.post('http://localhost:8080/api/users/register', values);
       alert('Registro exitoso');
