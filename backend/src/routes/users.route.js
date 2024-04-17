@@ -11,6 +11,7 @@ import {
 } from '../controllers/user.controller.js';
 import { existUserID, roleValidation } from '../helpers/db-validators.js';
 import { validateJWT } from '../middlewares/validate-JWT.js';
+import { passwordValidator } from '../middlewares/validate-password.js';
 
 const router = express();
 
@@ -19,7 +20,7 @@ router.get('/', [], usersGet);
 router.get('/:id', [], userGet);
 
 router.post(
-	'/register',
+	'/register', passwordValidator,
 	[
 		check('email', 'El correo es obligatorio').isEmail(),
 		check('password', 'La contraseña es obligatoria').not().isEmpty(),
