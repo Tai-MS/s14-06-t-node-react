@@ -63,7 +63,7 @@ export const MenuClient = () => {
 
         <div className="flex items-center space-x-2 mt-10">
           <img
-            src="/images/helpIcon.svg"
+            src="/images/HelpIcon.svg"
             alt="My transations Icon"
             className="h-6 w-6"
           />
