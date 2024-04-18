@@ -37,17 +37,18 @@ export const HomeClient = () => {
 
   const CarruselImg = [
     { id: 'img10', src: '/images/CarruselServices/pintores.svg', alt: 'Pintores' },
+    { id: 'img11', src: '/images/CarruselServices/locksmith.svg', alt: 'Cerrajeros' },
+    { id: 'img8', src: '/images/CarruselServices/gardener.svg', alt: "Jardineros" },
+    { id: 'img7', src: '/images/CarruselServices/electrician.svg', alt: 'Electricistas' }, 
+    { id: 'img9', src: '/images/CarruselServices/gasman.svg', alt: "Gacistas" },
     { id: 'img1', src: '/images/CarruselServices/AdultCare.svg', alt: 'Cuidado adulto' },
     { id: 'img2', src: '/images/CarruselServices/babySister.svg', alt: 'Niñera' },
     { id: 'img3', src: '/images/CarruselServices/bricklayer.svg', alt: 'Cuidado adulto' },
     { id: 'img4', src: '/images/CarruselServices/carpenter.svg', alt: 'Carpintero' },
     { id: 'img5', src: '/images/CarruselServices/blacksmith.svg', alt: 'Herrero' },
-    { id: 'img6', src: '/images/CarruselServices/clean.svg', alt: 'Limpieza' },
-    { id: 'img7', src: '/images/CarruselServices/electrician.svg', alt: 'Electricistas' },
-    { id: 'img8', src: '/images/CarruselServices/gardener.svg', alt: "Jardineros" },
-    { id: 'img9', src: '/images/CarruselServices/gasman.svg', alt: "Gacistas" },    
+    { id: 'img6', src: '/images/CarruselServices/clean.svg', alt: 'Limpieza' },         
     { id: 'img11', src: '/images/CarruselServices/move.svg', alt: 'Flete' },
-    { id: 'img11', src: '/images/CarruselServices/locksmith.svg', alt: 'Cerrajeros' },
+    
   ];
 
   //console.log(carruselImages)
