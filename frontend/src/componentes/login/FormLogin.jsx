@@ -109,10 +109,10 @@ const FormLogin = () => {
                       value: true,
                       message: "La contraseña es obligatorio",
                     },
-                    //   pattern: {
-                    //     value: passwordRegex,
-                    //     message: "La contraseña no es válida",
-                    //   },
+                     pattern: {
+                         value: passwordRegex,
+                         message: "La contraseña no es válida",
+                       },
                   })}
                 />
               {errors.contraseña && (

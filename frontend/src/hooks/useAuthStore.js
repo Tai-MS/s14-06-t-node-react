@@ -80,7 +80,7 @@ export const useAuthStore = () => {
     }
   }
 
-  const checkAuthToken = async (dispatch) => {
+  const checkAuthToken = async () => {
     try {
       const token = localStorage.getItem('token');
   
@@ -90,14 +90,19 @@ export const useAuthStore = () => {
       } else {
         console.log('Token encontrado. Ejecutando lógica adicional...');
         // Lógica adicional si es necesario cuando hay un token
-        // ...
       }
     } catch (error) {
       // Manejar cualquier error aquí
       console.error('Error al verificar el token:', error);
     }
   };
+  const handleLogout = () => {
+    document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+    dispatch(onLogout())
+    navigateTo('/')
+  }
   return {
+    handleLogout,
     status,
     user,
     errorMessage,

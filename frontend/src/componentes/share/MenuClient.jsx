@@ -4,11 +4,12 @@ import { mobileMenuAtom } from "../../atoms/atoms.js";
 import { useEffect } from "react";
 import { LoginButton } from "../share/LoginButtom.jsx";
 import { RegisterButton } from "../share/RegisterButton.jsx";
-
+import { useAuthStore } from "../../hooks/useAuthStore.js";
 export const MenuClient = () => {
   const location = useLocation();
   const setShowMobileMenu = useSetAtom(mobileMenuAtom);
-
+  const { user, handleLogout }=useAuthStore() 
+  
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setShowMobileMenu(false);
@@ -24,7 +25,7 @@ export const MenuClient = () => {
             "linear-gradient(179.92deg, #BCF5CC 0.07%, #86B282 101.12%)",
         }}
       >
-        <h2 className="font-semibold text-2xl mb-2 mt-1 text-center">¡Hola Julia!</h2>
+        <h2 className="font-semibold text-2xl mb-2 mt-1 text-center"> {`${user.firstName} ${user.lastName}`}</h2>
 
        
 
@@ -70,13 +71,13 @@ export const MenuClient = () => {
           <span className="text-sm font-semibold text-base">Ayuda</span>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 hover:text-[#383f38]" onClick={handleLogout}>
           <img
             src="/images/closeSessionIcon.svg"
             alt="My transations Icon"
             className="h-6 w-6"
           />
-          <span className="text-sm font-semibold text-base">Cerrar sesión</span>
+          <span className="text-sm font-semibold text-base cursor-pointer">Cerrar sesión</span>
         </div>
 
     
