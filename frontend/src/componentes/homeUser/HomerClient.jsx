@@ -1,21 +1,57 @@
+import React, { useEffect, useState } from 'react';
 import { HeaderClient } from "../share/HeaderClient.jsx";
 import { CarruselServices } from "./CarruselServices.jsx";
+import { fetchCategoryIds } from '../../servicios/categoryAxio.js';
 
 export const HomeClient = () => {
+  const [carruselImages, setCarruselImages] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const categories = await fetchCategoryIds();
+         console.log('Categorías obtenidas:', categories);
+
+        const categoryToImageIdMap = {};
+        categories.forEach(category => {
+          categoryToImageIdMap[category.name] = category._id;
+        });
+
+        const updatedImages = CarruselImg.map(image => {
+          const categoryId = categories.find(category => category.name === image.alt);
+          if (categoryId) {            
+            return { ...image, id: categoryToImageIdMap[categoryId.name] };
+          } else {
+            return image;
+          }
+        });
+
+        setCarruselImages(updatedImages);
+      } catch (error) {
+        console.error('Error al obtener IDs de categorías:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const CarruselImg = [
-    { id: 'img1', src: '/images/CarruselServices/AdultCare.svg', alt: 'Imagen cuidado adulto' },
-    { id: 'img2', src: '/images/CarruselServices/babySister.svg', alt: 'Imagen niñera' },
-    { id: 'img3', src: '/images/CarruselServices/bricklayer.svg', alt: 'Imagen cuidado adulto' },
-    { id: 'img4', src: '/images/CarruselServices/carpenter.svg', alt: 'Imagen carpintero' },
-    { id: 'img5', src: '/images/CarruselServices/blacksmith.svg', alt: 'Imagen herrero' },
-    { id: 'img6', src: '/images/CarruselServices/clean.svg', alt: 'Imagen limpieza' },
-    { id: 'img7', src: '/images/CarruselServices/electrician.svg', alt: 'Imagen electricista' },
-    { id: 'img8', src: '/images/CarruselServices/gardener.svg', alt: 'Imagen jardinero' },
-    { id: 'img9', src: '/images/CarruselServices/gasman.svg', alt: 'Imagen gasista' },
-    { id: 'img10', src: '/images/CarruselServices/plumber.svg', alt: 'Imagen plomero' },
-    { id: 'img11', src: '/images/CarruselServices/move.svg', alt: 'Imagen flete' },
-    { id: 'img11', src: '/images/CarruselServices/locksmith.svg', alt: 'Imagen cerrajero' },
+    { id: 'img10', src: '/images/CarruselServices/pintores.svg', alt: 'Pintores' },
+    { id: 'img1', src: '/images/CarruselServices/AdultCare.svg', alt: 'Cuidado adulto' },
+    { id: 'img2', src: '/images/CarruselServices/babySister.svg', alt: 'Niñera' },
+    { id: 'img3', src: '/images/CarruselServices/bricklayer.svg', alt: 'Cuidado adulto' },
+    { id: 'img4', src: '/images/CarruselServices/carpenter.svg', alt: 'Carpintero' },
+    { id: 'img5', src: '/images/CarruselServices/blacksmith.svg', alt: 'Herrero' },
+    { id: 'img6', src: '/images/CarruselServices/clean.svg', alt: 'Limpieza' },
+    { id: 'img7', src: '/images/CarruselServices/electrician.svg', alt: 'Electricistas' },
+    { id: 'img8', src: '/images/CarruselServices/gardener.svg', alt: "Jardineros" },
+    { id: 'img9', src: '/images/CarruselServices/gasman.svg', alt: "Gacistas" },    
+    { id: 'img11', src: '/images/CarruselServices/move.svg', alt: 'Flete' },
+    { id: 'img11', src: '/images/CarruselServices/locksmith.svg', alt: 'Cerrajeros' },
   ];
+
+  //console.log(carruselImages)
+
   return (
     <>
       <HeaderClient showMenu={true} />
@@ -33,7 +69,7 @@ export const HomeClient = () => {
           </div>
         </div>
 
-        <CarruselServices imagenes={CarruselImg} />
+        <CarruselServices imagenes={carruselImages} />
 
         <div className="mt-8">
           <p className="text-left">

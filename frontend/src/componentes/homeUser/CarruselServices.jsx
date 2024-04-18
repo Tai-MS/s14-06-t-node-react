@@ -1,25 +1,36 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export const CarruselServices = ({ imagenes }) => {
+  console.log(
+    "Contenido del objeto imagenes:",
+    JSON.stringify(imagenes, null, 2)
+  );
   const [mostrarImagenes, setMostrarImagenes] = useState(false);
+  const [servicioSeleccionado, setServicioSeleccionado] = useState(null);
+  
+const handleImagenClick = async (imagenId) => {
+  try {
+    const response = await axios.get(
+      `https://s14-06-t-node-react.onrender.com/api/users/category/${imagenId}`
+    );
 
-  const handleImagenClick = (imagenId) => {
-    axios
-      .get(`tu-backend.com/api/obtener-informacion/${imagenId}`)
-      .then((response) => {
-        console.log("Información obtenida:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error al obtener información:", error);
-      });
+    console.log("Información obtenida:", response.data);
+    setServicioSeleccionado(response.data);
+  } catch (error) {
+    console.error("Error al obtener información:", error);
+  }
 
-    setMostrarImagenes(true);
-  };
+  setMostrarImagenes(true);
+};
+
+
+  console.log(servicioSeleccionado);
 
   const settings = {
     dots: true,
@@ -43,12 +54,12 @@ export const CarruselServices = ({ imagenes }) => {
     <div>
       {!mostrarImagenes && (
         <div className="flex justify-center mt-4">
-        <button
-          onClick={() => setMostrarImagenes(true)}
-          className="mt-4 flex justify-center"
-        >
-          <img src="/images/buscadorProv.svg" alt="" className="mx-auto" />
-        </button>
+          <button
+            onClick={() => setMostrarImagenes(true)}
+            className="mt-4 flex justify-center"
+          >
+            <img src="/images/buscadorProv.svg" alt="" className="mx-auto" />
+          </button>
         </div>
       )}
       {mostrarImagenes && (
@@ -63,13 +74,20 @@ export const CarruselServices = ({ imagenes }) => {
             {imagenes.map((imagen) => (
               <div key={imagen.id}>
                 {/* Enlace clicable que llama a handleImagenClick al hacer clic */}
-                <a href="#" onClick={() => handleImagenClick(imagen.id)}>
+                <Link
+                  to={{
+                    state: { servicio: servicioSeleccionado },
+                    pathname: "/resultados-servicio",                   
+                    
+                  }}
+                  onClick={() => handleImagenClick(imagen.id)}
+                >
                   <img
                     src={imagen.src}
                     alt={imagen.alt}
                     className="mx-auto cursor-pointer"
                   />
-                </a>
+                </Link>
               </div>
             ))}
           </Slider>
