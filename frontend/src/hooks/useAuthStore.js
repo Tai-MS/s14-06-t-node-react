@@ -3,15 +3,16 @@ import Swal from 'sweetalert2'
 
 import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store/auth/authSlice'
 import axios from 'axios'
+import { useNavigate } from 'react-router'
 
 export const useAuthStore = () => {
   const { status, user, errorMessage } = useSelector(state => state.authState);
 
   const dispatch = useDispatch()
 
+  const navigateTo =useNavigate();
 
-
-  const startLogin = async ({ email, password }) => {
+  const startLogin = async ({ email, contraseña }) => {
 
     dispatch(onChecking())
     console.log('startLogin')
@@ -21,7 +22,7 @@ export const useAuthStore = () => {
     try {
       const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
         email,
-        password
+        contraseña
       })
 
       console.log(data)
@@ -43,8 +44,24 @@ export const useAuthStore = () => {
       localStorage.setItem('user', JSON.stringify(data.user))
       console.log(data.user)
       dispatch(onLogin(data.user))
-       console.log(data.user)
-    
+      Swal.fire({
+        title: "<strong>Bienvenido</strong>",
+        icon: "info",
+        html: `
+          <h2>${data.user.firstName}  ${data.user.lastName}</h2>
+        `,
+        showCloseButton: true,
+        focusConfirm: false,
+        confirmButtonText: `
+          <i class="fa fa-thumbs-up"></i> Aceptar
+        `,
+        confirmButtonAriaLabel: "Aceptar",
+       
+      });
+      
+      if(data?.user?.rol =='CLIENT'){
+        navigateTo(`/homeclient`)
+      }
     } catch (error) {
       console.log(error) 
       Swal.fire({
@@ -63,7 +80,7 @@ export const useAuthStore = () => {
     }
   }
 
-  const checkAuthToken = async (dispatch) => {
+  const checkAuthToken = async () => {
     try {
       const token = localStorage.getItem('token');
   
@@ -73,14 +90,19 @@ export const useAuthStore = () => {
       } else {
         console.log('Token encontrado. Ejecutando lógica adicional...');
         // Lógica adicional si es necesario cuando hay un token
-        // ...
       }
     } catch (error) {
       // Manejar cualquier error aquí
       console.error('Error al verificar el token:', error);
     }
   };
+  const handleLogout = () => {
+    document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+    dispatch(onLogout())
+    navigateTo('/')
+  }
   return {
+    handleLogout,
     status,
     user,
     errorMessage,

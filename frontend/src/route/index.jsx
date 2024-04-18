@@ -1,21 +1,28 @@
-import React from 'react';
 import { Suspense } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 import NoAuthRouter from "./NoAuthRouter.jsx";
 import AuthRouter from "./AuthRouter.jsx";
-//import { useIsAuthenticated } from "../hooks/auth";
-
+import { useAuthStore } from "../hooks/useAuthStore.js";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 export default function Navigation() {
   /*const isAuth = useIsAuthenticated();*/
+
+  const { status, checkAuthToken } = useAuthStore();
+
+ 
+  useEffect(() => {
+    checkAuthToken();
+  }, []);
 
   return (
     <Suspense fallback={<p>cargando...</p>}>
         
-     <BrowserRouter>
+     <Routes>
       
-        {<NoAuthRouter />}
-        {<AuthRouter />}
-      </BrowserRouter> 
+        {status==='authenticated'? 
+        <Route path="/*" element={<AuthRouter />} />: <Route path="/*" element={<NoAuthRouter />} />}
+      </Routes> 
     </Suspense>
   );
 }

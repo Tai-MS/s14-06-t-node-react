@@ -5,10 +5,13 @@ import closeWindow from "/images/closeWindow.svg";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useAuthStore } from "../../hooks/useAuthStore";
+import { useState } from "react";
+import { IoEyeSharp } from "react-icons/io5";
+import { IoEyeOffSharp } from "react-icons/io5";
 
 const FormLogin = () => {
-  const {
-    startLogin} =useAuthStore();
+  const [showPassword, setShowPassword] = useState(false);
+  const { startLogin } = useAuthStore();
   const history = useNavigate();
   const {
     register,
@@ -18,16 +21,16 @@ const FormLogin = () => {
   } = useForm({
     defaultValues: {
       email: "",
-      password: "",
+      contraseña: "",
     },
     mode: "onChange",
   });
   const onSubmit = handleSubmit((data) => {
     console.log(data);
     startLogin({
-            email: data.email,
-            password: data.password
-        })
+      email: data.email,
+      contraseña: data.contraseña,
+    });
     reset();
   });
   //const { errorMessage, startRegister } = useAuthStore();
@@ -35,7 +38,8 @@ const FormLogin = () => {
     history("/");
   };
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/;
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&()*+\/?@[\\\]^_{|}]).{8,}$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&()*+\/?@[\\\]^_{|}]).{8,}$/;
 
   return (
     <>
@@ -86,31 +90,37 @@ const FormLogin = () => {
             {errors.email && (
               <span className="error-message">{errors.email.message}</span>
             )}
-
-            <label htmlFor="password" className=" w-max-[500px] text-[1rem] ">
-              Contraseña
+            <div className=" relative md:w-[60%]">
+                <div className="absolute right-[3%] top-[30px] cursor-pointer " 
+                onClick={()=>setShowPassword(!showPassword)}>
+                    {showPassword?  <IoEyeOffSharp size={30} />: <IoEyeSharp size={30} /> }
+                </div>
+              <label htmlFor="password" className=" w-max-[500px] text-[1rem] ">
+                Contraseña
+              </label>
               <input
-                type="password"
-                name="password"
-                id="password"
-                className="w-full block h-11 rounded-t-lg border-b-2 border-[#86B282]
-          outline-none p-2 md:w-[60%]"
-                {...register("password", {
-                  required: {
-                    value: true,
-                    message: "La contraseña es obligatorio",
-                  },
-                  pattern: {
-                    value: passwordRegex,
-                    message: "La contraseña no es válida",
-                  },
-                })}
-              />
-            </label>
-
-            {errors.password && (
-              <span className="error-message">{errors.password.message}</span>
-            )}
+                  type={showPassword? "text": "password"}
+                  name="password"
+                  id="password"
+                  className="w-full block h-11 rounded-t-lg border-b-2 border-[#86B282]
+              outline-none p-2 "
+                  {...register("contraseña", {
+                    required: {
+                      value: true,
+                      message: "La contraseña es obligatorio",
+                    },
+                     pattern: {
+                         value: passwordRegex,
+                         message: "La contraseña no es válida",
+                       },
+                  })}
+                />
+              {errors.contraseña && (
+                <span className="error-message">
+                  {errors.contraseña.message}
+                </span>
+              )}
+            </div>
           </fieldset>
           <div className="w-full md:w-[60%] flex flex-col items-center">
             <Link to="/recover_password" className="w-full mt-2 mb-12">
