@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export const CarruselServices = ({ imagenes }) => {
+  const navigate = useNavigate();
   console.log(
     "Contenido del objeto imagenes:",
     JSON.stringify(imagenes, null, 2)
@@ -22,6 +23,7 @@ const handleImagenClick = async (imagenId) => {
 
     console.log("Información obtenida:", response.data);
     setServicioSeleccionado(response.data);
+    navigate("/resultados-servicio", { state: { servicio: response.data } });
   } catch (error) {
     console.error("Error al obtener información:", error);
   }
@@ -74,20 +76,12 @@ const handleImagenClick = async (imagenId) => {
             {imagenes.map((imagen) => (
               <div key={imagen.id}>
                 {/* Enlace clicable que llama a handleImagenClick al hacer clic */}
-                <Link
-                  to={{
-                    state: { servicio: servicioSeleccionado },
-                    pathname: "/resultados-servicio",                   
-                    
-                  }}
+                <button
                   onClick={() => handleImagenClick(imagen.id)}
+                  className="cursor-pointer"
                 >
-                  <img
-                    src={imagen.src}
-                    alt={imagen.alt}
-                    className="mx-auto cursor-pointer"
-                  />
-                </Link>
+                  <img src={imagen.src} alt={imagen.alt} className="mx-auto" />
+                </button>
               </div>
             ))}
           </Slider>
