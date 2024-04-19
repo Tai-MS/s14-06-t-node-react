@@ -11,15 +11,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
-app.use(cors());
+app.use(cors({ origin: `http://localhost:${PORT}` })); 
 app.use(express.json());
 dbConnection();
 
 app.use('/api/login', loginRoute);
 app.use('/api/users', usersRoute);
 app.use('/services', serviceRoutes);
-app.use('/category', categoryRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
