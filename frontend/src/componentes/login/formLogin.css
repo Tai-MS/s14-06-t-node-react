@@ -1,0 +1,15 @@
+.background__form{
+    background: linear-gradient(#BCF5CC, #86B282) ;
+}
+.font__form{
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+}
+.error-message {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 4px;
+    color: #CB0000; /* Color del texto */
+    text-shadow: 1px 1px 12px #f6f5f5; /* Sombra ligera */
+  }

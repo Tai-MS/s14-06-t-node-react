@@ -10,6 +10,9 @@ const tailwindConfig = {
       colors: {
         customGreen: '#86B282', // Define el color personalizado con el nombre 'customGreen' y el valor '#86B282'
       },
+      fontFamily: {
+        'sans': ['Manrope', 'Roboto Condensed', 'Helvetica', 'Arial', 'sans-serif']
+      },
     },
   },
   plugins: [],

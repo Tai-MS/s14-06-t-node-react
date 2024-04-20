@@ -30,7 +30,7 @@ export const HeaderLanding = ({ showMenu }) => {
         <>
           <nav
             className={clsx(
-              "fixed flex flex-col bg-white w-full h-full top-[78px] transition-all duration-500 z-30",
+              "fixed flex flex-col backdrop-blur-[1.8px] w-full h-full top-[78px] transition-all duration-500 z-30",
               showMobileMenu ? "right-0" : "-right-full"
             )}
           >
