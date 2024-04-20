@@ -12,7 +12,7 @@ export const SearchPage = () => {
     <>
       <HeaderClient showMenu={true} />
       
-      <div className=" text-2xl font-semibold text-customGreen mt-3 ml-3">Solicitar Servicio</div>
+      <div className=" text-2xl font-semibold text-customGreen mt-3 ml-3">Solicitar Emplead@</div>
       <span className="font-semibold mt-2 ml-5">{servicios[0].category.name}</span>
       {/* Mapear cada servicio para renderizar una SearchCard por cada uno */}
       {servicios.map((servicio, index) => (
