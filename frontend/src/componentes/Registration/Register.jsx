@@ -1,13 +1,19 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
 
 const FormRegister = () => {
+  const history = useNavigate();
   const submitForm = async (values) => {
     console.log(values)
     try {
-      await axios.post('http://localhost:8080/api/users/register', values);
+      await axios.post('https://s14-06-t-node-react.onrender.com/api/users/register', values);
       alert('Registro exitoso');
+      
+     history(`/acceso`)
+      
     } catch (error) {
       console.error('Error al registrar:', error);
     }
@@ -25,9 +31,9 @@ const FormRegister = () => {
   });
 
   return (
-    <div class="w-full max-w-xs">
-       <div>
-        <form class="w-328 h-568 bg-gradient-to-b from-green-200 to-neutral-400 shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}> 
+    <div class="w-full mt-4 flex items-center justify-center ">
+       <div >
+        <form class="w-full h-568 bg-gradient-to-b from-green-200 to-customGreen shadow-md rounded px-8 pt-6 pb-8 mb-4 " onSubmit={handleSubmit}> 
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="firstName">
         Nombre
@@ -68,7 +74,7 @@ const FormRegister = () => {
           <label  class="block text-gray-700 text-sm font-bold mb-2" for="password">
         Contraseña
           </label>
-          <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
           type='password'
           placeholder='Contraseña'
           name='password'
@@ -83,8 +89,8 @@ const FormRegister = () => {
         </select> 
         </div>
         
-        <div class="p-4 flex justify-between shadow-md sticky top-0 z-50">
-         <div class="bg-green-200 hover:bg-green-600 rounded-full text-black font-semibold w-max py-3 px-4 shadow-md transition-colors duration-300 ease-in-out flex items-center justify-center">
+        <div class="p-4 flex justify-between mt-14 sticky top-0 z-50">
+         <div class="bg-green-200 hover:bg-green-600 rounded-full text-black font-semibold w-full py-3 px-4 shadow-md transition-colors duration-300 ease-in-out flex items-center justify-center">
           <button type='submit'>Registrarse</button>
          </div>
         </div>
