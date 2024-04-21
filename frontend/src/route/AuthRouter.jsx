@@ -9,6 +9,7 @@ export default function AuthRouter() {
   return (
     <Routes>
       {/* HOME CLIENT */}
+      <Route path="/" element={<HomeClient />}/>
       <Route path="/homeclient" element={<HomeClient />} />  
       <Route path='/resultados-servicio' element={<SearchPage />} />
       <Route path='/empleado-confirmado' element={<ServiceCorfirm />} />
