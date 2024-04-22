@@ -18,6 +18,8 @@ app.use('/api/login', loginRoute);
 app.use('/api/users', usersRoute);
 app.use('/services', serviceRoutes);
 
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-});
+
+})
