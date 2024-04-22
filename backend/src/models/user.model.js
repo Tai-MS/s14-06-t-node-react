@@ -53,7 +53,8 @@ const userSchema = new mongoose.Schema({
 			'24/7',
 		],
 	},
-	adquired_services: { type: Schema.Types.ObjectId, ref: 'Service' },
+	adquired_services: [{ type: Schema.Types.ObjectId, ref: 'Service' }],
+	provided_services: [{ type: Schema.Types.ObjectId, ref: 'Service' }],
 	category: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Category',
