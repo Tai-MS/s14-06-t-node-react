@@ -3,6 +3,8 @@ import { check } from 'express-validator';
 import { validateFields } from '../middlewares/validate-fields.js';
 import {
 	addServiceToUser,
+	getAdquiredServices,
+	getProvidedServices,
 	getUsersByCategory,
 	userGet,
 	userPost,
@@ -19,6 +21,10 @@ const router = express();
 router.get('/', [], usersGet);
 
 router.get('/:id', [], userGet);
+
+router.get('/:id/adquired-services', [], getAdquiredServices);
+
+router.get('/:id/provided-services', [], getProvidedServices);
 
 router.get('/category/:id', getUsersByCategory);
 
