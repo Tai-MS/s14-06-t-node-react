@@ -12,15 +12,12 @@ export const getAllServices = async (req, res) => {
 
 // Crear un nuevo servicio
 export const createService = async (req, res) => {
-<<<<<<< HEAD
 	const { title, description, image } = req.body;
-=======
 	const service = new serviceModel({
 		title: req.body.title,
 		description: req.body.description,
 		category: req.body.category,
 	});
->>>>>>> da31081bdb990d3ffead5b6e84435b453e06cccf
 
 	try {
 		const existingService = await serviceModel.findOne({ title });
