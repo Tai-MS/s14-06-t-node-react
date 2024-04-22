@@ -1,3 +1,4 @@
+import serviceModel from '../models/service.model.js';
 import userModel from '../models/user.model.js';
 
 import bcryptjs from 'bcryptjs';
@@ -132,3 +133,41 @@ export const getUsersByCategory = async (req, res) => {
 		res.status(500).json({ error: 'Error al obtener usuarios por ctegoria' });
 	}
 };
+
+
+export const addServiceToUser = async (req, res) => {
+	try {
+		const { id } = req.params;
+		const { service_id } = req.body;
+
+		const user = await userModel.findById(id);
+		const adquiredService = await serviceModel.findById(service_id)
+
+		if (!user) {
+			return res.status(404).json({
+				msg: 'Usuario no encontrado',
+			});
+		}
+		if(user.rol !== 'CLIENT'){
+			return res.status(400).json({
+				msg: 'El usuario no es un cliente',
+			});
+		}
+		if(!adquiredService){
+			return res.status(404).json({
+				msg: 'Servicio no encontrado',
+			});
+		}
+
+		user.adquired_services.push(adquiredService._id);
+
+		await user.save();
+
+		res.status(200).json({
+			msg: 'Servicio agregado correctamente',
+		})
+	} catch (error) {
+		console.log(error);
+		throw new Error('Error al agregar servicio al usuario');
+	}
+}

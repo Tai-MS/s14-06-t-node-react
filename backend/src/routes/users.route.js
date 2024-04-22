@@ -2,6 +2,7 @@ import express from 'express';
 import { check } from 'express-validator';
 import { validateFields } from '../middlewares/validate-fields.js';
 import {
+	addServiceToUser,
 	getUsersByCategory,
 	userGet,
 	userPost,
@@ -9,7 +10,7 @@ import {
 	usersGet,
 	usersPut,
 } from '../controllers/user.controller.js';
-import { existUserID, roleValidation } from '../helpers/db-validators.js';
+import { existServiceID, existUserID, roleValidation } from '../helpers/db-validators.js';
 import { validateJWT } from '../middlewares/validate-JWT.js';
 import { passwordValidator } from '../middlewares/validate-password.js';
 
@@ -18,6 +19,8 @@ const router = express();
 router.get('/', [], usersGet);
 
 router.get('/:id', [], userGet);
+
+router.get('/category/:id', getUsersByCategory);
 
 router.post(
 	'/register', passwordValidator,
@@ -37,6 +40,16 @@ router.post(
 	],
 	userPost
 );
+
+router.post('/:id/add-service', [
+	validateJWT,
+	check('id', 'No es un ID válido').isMongoId(),
+	check('id').custom(existUserID),
+	check('service_id', 'No es un ID válido').isMongoId(),
+	check('service_id').custom(existServiceID),
+	validateFields,
+], addServiceToUser);
+
 
 router.put(
 	'/:id',
@@ -69,6 +82,6 @@ router.delete(
 	usersDelete
 );
 
-router.get('/category/:id', getUsersByCategory);
+
 
 export default router;

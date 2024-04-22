@@ -1,4 +1,5 @@
 import serviceModel from '../models/service.model.js';
+import userModel from '../models/user.model.js';
 
 //obtener todos los servicios
 export const getAllServices = async (req, res) => {
@@ -12,16 +13,23 @@ export const getAllServices = async (req, res) => {
 
 // Crear un nuevo servicio
 export const createService = async (req, res) => {
-	const { title, description, image } = req.body;
-	const service = new serviceModel({
-		title: req.body.title,
-		description: req.body.description,
-		category: req.body.category,
-	});
+	const { id } = req.params;
+	const { title, description, category } = req.body;
 
 	try {
+		const user = await userModel.findById(id);
 		const existingService = await serviceModel.findOne({ title });
 
+		if(user.rol !== 'PROVIDER') {
+			return res.status(401).json({ message: 'No tienes permisos para crear servicios.' });
+		}
+
+		if (!user) {
+			return res.status(404).json({
+				msg: 'Usuario no encontrado',
+			});
+		}
+		
 		if (existingService) {
 			return res
 				.status(400)
@@ -32,9 +40,11 @@ export const createService = async (req, res) => {
 		const service = new serviceModel({
 			title,
 			description,
-			image,
+			category,
+			createdBy: user._id,
 		});
-
+		user.provided_services.push(service._id);
+		await user.save();
 		const savedService = await service.save();
 		res.status(201).json(savedService);
 	} catch (error) {
