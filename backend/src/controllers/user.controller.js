@@ -18,6 +18,44 @@ export const usersGet = async (req, res) => {
 	}
 };
 
+export const getAdquiredServices = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		const {adquired_services} = await userModel.findById(id).populate('adquired_services');
+
+		res.json({
+			adquired_services
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(404).json({
+			msg: 'Error al obtener los servicios adquiridos por el usuario.',
+		});
+	}
+
+}
+
+export const getProvidedServices = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		const {provided_services} = await userModel.findById(id).populate('provided_services');
+
+		res.json({
+			provided_services
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(404).json({
+			msg: 'Error al obtener los servicios adquiridos por el usuario.',
+		});
+	}
+
+}
+
+
+
 export const userGet = async (req, res) => {
 	try {
 		const { id } = req.params;
