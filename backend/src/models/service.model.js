@@ -15,9 +15,7 @@ const serviceSchema = new mongoose.Schema(
 			ref: 'Category', */
 		},
 		createdBy: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'User',
-			required: true,
+			type: String
 		},
 	},
 	{ timestamps: true }
