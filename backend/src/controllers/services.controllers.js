@@ -19,6 +19,7 @@ export const createService = async (req, res) => {
 	try {
 		const user = await userModel.findById(id);
 		const existingService = await serviceModel.findOne({ title });
+		const {firstName} = user
 
 		if(user.rol !== 'PROVIDER') {
 			return res.status(401).json({ message: 'No tienes permisos para crear servicios.' });
@@ -36,12 +37,11 @@ export const createService = async (req, res) => {
 				.json({ message: 'Ya existe un servicio con este título.' });
 		}
 
-		// Si no existe, crear el nuevo servicio
 		const service = new serviceModel({
 			title,
 			description,
 			category,
-			createdBy: user._id,
+			createdBy: firstName,
 		});
 		user.provided_services.push(service._id);
 		await user.save();
