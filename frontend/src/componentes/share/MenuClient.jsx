@@ -8,8 +8,8 @@ import { useAuthStore } from "../../hooks/useAuthStore.js";
 export const MenuClient = () => {
   const location = useLocation();
   const setShowMobileMenu = useSetAtom(mobileMenuAtom);
-  const { user, handleLogout }=useAuthStore() 
-  
+  const { user, handleLogout } = useAuthStore();
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setShowMobileMenu(false);
@@ -25,9 +25,10 @@ export const MenuClient = () => {
             "linear-gradient(179.92deg, #BCF5CC 0.07%, #86B282 101.12%)",
         }}
       >
-        <h2 className="font-semibold text-2xl mb-2 mt-1 text-center"> {`${user.firstName} ${user.lastName}`}</h2>
-
-       
+        <h2 className="font-semibold text-2xl mb-2 mt-1 text-center">
+          {" "}
+          {`${user.firstName} ${user.lastName}`}
+        </h2>
 
         <div className="flex space-x-2 justify-start">
           <img
@@ -35,7 +36,9 @@ export const MenuClient = () => {
             alt="Notification Icon"
             className="h-6 w-6"
           />
-          <span className="text-sm font-semibold text-base">Notificaciones</span>
+          <span className="text-sm font-semibold text-base">
+            Notificaciones
+          </span>
         </div>
         <div className="flex items-center space-x-2">
           <img
@@ -51,7 +54,12 @@ export const MenuClient = () => {
             alt="My transations Icon"
             className="h-6 w-6"
           />
-          <span className="text-sm font-semibold text-base">Historial contrataciones</span>
+          <Link
+            to="/empleado-historial"
+            className="text-sm font-semibold text-base hover:underline"
+          >
+            Historial contrataciones
+          </Link>
         </div>
         <div className="flex items-center space-x-2">
           <img
@@ -71,18 +79,19 @@ export const MenuClient = () => {
           <span className="text-sm font-semibold text-base">Ayuda</span>
         </div>
 
-        <div className="flex items-center space-x-2 hover:text-[#383f38]" onClick={handleLogout}>
+        <div
+          className="flex items-center space-x-2 hover:text-[#383f38]"
+          onClick={handleLogout}
+        >
           <img
             src="/images/closeSessionIcon.svg"
             alt="My transations Icon"
             className="h-6 w-6"
           />
-          <span className="text-sm font-semibold text-base cursor-pointer">Cerrar sesión</span>
+          <span className="text-sm font-semibold text-base cursor-pointer">
+            Cerrar sesión
+          </span>
         </div>
-
-    
-
-
 
         <div />
       </div>
