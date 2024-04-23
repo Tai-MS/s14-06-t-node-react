@@ -1,0 +1,8 @@
+.font-official{
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+}
+.bordes{
+    box-shadow: 0px 4px 4px 0px #00000040;
+    background: #FAFFFB;
+}

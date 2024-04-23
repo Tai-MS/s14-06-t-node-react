@@ -1,9 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import 'react-big-calendar/lib/css/react-big-calendar.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 #root {
   display       : flex;
   flex-direction: column;
-  min-height    : 100vh;
+  height    : 100vh;
+}
+.rbc-calendar{
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background-color: #86B28233;
+  border-radius: 1rem;
+  padding:16px, 12px, 24px, 24px;
 }

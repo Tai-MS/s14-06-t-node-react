@@ -41,7 +41,9 @@ export const ServiceCorfirm = () => {
           <div className="px-4">
             <div className="flex flex-row ">
               {/* <label htmlFor="Perfil Proveedor" >Nota:</label> */}
-              <span id="perfilProveedor" className="ml-1 mt-2 text-center"> Los horarios y precio lo debes acordar con el proveedor en nuestro chat</span>
+              <span id="perfilProveedor" className="ml-1 mt-2 text-center"> 
+              Los horarios y precio lo debes acordar con el proveedor en nuestro chat.
+              </span>
 
             </div>
           </div>

@@ -1,15 +1,20 @@
 import { useSetAtom } from "jotai";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { mobileMenuAtom } from "../../atoms/atoms.js";
 import { useEffect } from "react";
-import { LoginButton } from "../share/LoginButtom.jsx";
-import { RegisterButton } from "../share/RegisterButton.jsx";
+import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../hooks/useAuthStore.js";
-export const MenuClient = () => {
+import chatIcon from "/images/chatIcon.svg";
+export const MenuProvider = () => {
+
+  const navigateTo =useNavigate();
   const location = useLocation();
   const setShowMobileMenu = useSetAtom(mobileMenuAtom);
   const { user, handleLogout }=useAuthStore() 
   
+  const goToHistory =()=>{
+    navigateTo('/historial-provider');
+  }
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setShowMobileMenu(false);
@@ -37,7 +42,7 @@ export const MenuClient = () => {
           />
           <span className="text-sm font-semibold text-base">Notificaciones</span>
         </div>
-        <div className="flex items-center space-x-2  cursor-pointer hover:text-[#383f38]">
+        <div className="flex items-center space-x-2 cursor-pointer hover:text-[#383f38]">
           <img
             src="/images/mydataIcon.svg"
             alt="My data Icon"
@@ -45,24 +50,24 @@ export const MenuClient = () => {
           />
           <span className="text-sm font-semibold text-base">Mis datos</span>
         </div>
-        <div className="flex items-center space-x-2  cursor-pointer hover:text-[#383f38]">
+        <div className="flex items-center space-x-2 cursor-pointer hover:text-[#383f38]" onClick={goToHistory}>
           <img
             src="/images/transactionLogIcon.svg"
             alt="My transations Icon"
             className="h-6 w-6"
           />
-          <span className="text-sm font-semibold text-base ">Historial contrataciones</span>
+          <span className="text-sm font-semibold text-base">Historial contrataciones</span>
         </div>
         <div className="flex items-center space-x-2 cursor-pointer hover:text-[#383f38]">
           <img
-            src="/images/newOrderIcon.svg"
-            alt="My transations Icon"
+            src={chatIcon}
+            alt="Chat Icon"
             className="h-6 w-6"
           />
-          <span className="text-sm font-semibold text-base ">Nuevo pedido</span>
+          <span className="text-sm font-semibold text-base ">Chat</span>
         </div>
 
-        <div className="flex items-center space-x-2 mt-10  cursor-pointer hover:text-[#383f38]">
+        <div className="flex items-center space-x-2 mt-10 cursor-pointer hover:text-[#383f38]">
           <img
             src="/images/HelpIcon.svg"
             alt="Ayuda Icon"
@@ -71,13 +76,13 @@ export const MenuClient = () => {
           <span className="text-sm font-semibold text-base">Ayuda</span>
         </div>
 
-        <div className="flex items-center space-x-2 cursor-pointer hover:text-[#383f38]" onClick={handleLogout}>
+        <div className="flex items-center space-x-2 hover:text-[#383f38]" onClick={handleLogout}>
           <img
             src="/images/closeSessionIcon.svg"
-            alt="Cerrar session Icon"
+            alt="Cerrar sesión Icon"
             className="h-6 w-6"
           />
-          <span className="text-sm font-semibold text-base ">Cerrar sesión</span>
+          <span className="text-sm font-semibold text-base cursor-pointer">Cerrar sesión</span>
         </div>
 
     
