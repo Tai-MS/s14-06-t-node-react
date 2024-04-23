@@ -3,6 +3,7 @@ import { HomeClient } from "../componentes/homeUser/HomeClient.jsx";
 import { SearchPage } from "../pages/searchService/SearchPage.jsx";
 import { NotFound } from "../pages/NotFound.jsx";
 import { ServiceCorfirm } from "../pages/searchService/ServiceCorfirm.jsx";
+import { ClientHistorial } from "../pages/ClientHistory/ClientHistory.jsx";
 export default function AuthRouter() {
 
   
@@ -13,6 +14,7 @@ export default function AuthRouter() {
       <Route path='/resultados-servicio' element={<SearchPage />} />
       <Route path='/empleado-confirmado' element={<ServiceCorfirm />} />
       <Route path="/*" element={<NotFound />} /> 
+      <Route path='/empleado-historial' element={<ClientHistorial />} />
     </Routes>
   );
 }
