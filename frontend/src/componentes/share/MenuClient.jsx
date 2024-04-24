@@ -54,7 +54,12 @@ export const MenuClient = () => {
             alt="My transations Icon"
             className="h-6 w-6"
           />
-          <span className="text-sm font-semibold text-base ">Historial contrataciones</span>
+                    <Link
+            to="/empleado-historial"
+            className="text-sm font-semibold text-base hover:underline"
+          >
+            Historial contrataciones
+          </Link>
         </div>
         <div className="flex items-center space-x-2 cursor-pointer hover:text-[#383f38]">
           <img
