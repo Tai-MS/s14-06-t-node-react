@@ -8,7 +8,7 @@ El proyecto se encuentra en un MVP inicial y funcional. Actualmente soporta el u
 ### Stack Tecnológico
 | Rama         | Tecnologías                                       |
 | ------------ | ------------------------------------------------- |
-| UX/UI        | ![Figma](https://www.figma.com/file/Ccr90UAlgQt5L5UHTDa0S2/s14-06-t-node-react?type=design&node-id=1-2&mode=design&t=mVrwxk1BXNSZetTZ-0)                                            |
+| UX/UI        | ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) |
 | Front End    | ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white) |
 | Back End     | ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge)
                              |
@@ -18,15 +18,20 @@ El proyecto se encuentra en un MVP inicial y funcional. Actualmente soporta el u
 | Others       | ![GIT](https://img.shields.io/badge/Git-fc6d26?style=for-the-badge&logo=git&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)                                          |
 
 ### Tecnologías
-| Frontend          | Tecnologías                        |
-| ----------------- | ---------------------------------- |
-| JavaScript        | React.js, Vite.js                  |
 
-| Backend           | Tecnologías                        |
-| ----------------- | ---------------------------------- |
-| JavaScript        | Express.js, MongoDB                |
+- Frontend:
 
+  - **Javascript**
+  - **React.Js**
+  - **Vite Js**
+  - **CSS Modules**
 
+- Backend:
+
+  - **Javascript**
+  - **Express.js**
+  - **Mongo DB**
+                |
 ### Dependencias Frontend:
 - @reduxjs/toolkit: Proporciona herramientas y patrones para una escritura de código más optima.
 - axios: Para realizar peticiones HTTP desde el navegador.
