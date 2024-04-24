@@ -41,6 +41,7 @@ export const getProvidedServices = async (req, res) => {
 		const { id } = req.params;
 
 		const {provided_services} = await userModel.findById(id).populate('provided_services');
+		console.log(provided_services)
 
 		res.json({
 			provided_services
