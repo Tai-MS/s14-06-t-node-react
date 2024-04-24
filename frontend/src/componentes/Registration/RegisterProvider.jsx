@@ -10,9 +10,17 @@ export const RegisterProvider = () => {
   const history = useNavigate();
 
   const submitForm = async (values) => {
+    
     try {
       // Combinar los datos del primer y segundo formulario
-      const combinedValues = { ...userData, ...values };
+      const combinedValues = { 
+        ...userData, 
+        ...values,
+        availability_schedule: values.availability_schedule[0],
+        service_type: values.service_type[0],
+        type_of_payment: values.type_of_payment[0]
+      };
+      console.log(combinedValues)
       // Enviar los datos del cliente al backend
       await axios.post('https://s14-06-t-node-react.onrender.com/api/users/register', combinedValues);
       alert('Registro exitoso');
@@ -27,9 +35,9 @@ export const RegisterProvider = () => {
       city: '',
       phone: '',
       address: '',
-      service_type: [],
-      type_of_payment: [],
-      availability_schedule: [],
+      service_type: '',
+      type_of_payment: '',
+      availability_schedule:'',
     },
     onSubmit: submitForm,
   });
@@ -105,9 +113,9 @@ export const RegisterProvider = () => {
               value={values.type_of_payment}
               onChange={handleChange}
             >
-              <option value="Débito">Débito</option>
+              <option value="Debito">Débito</option>
               <option value="Efectivo">Efectivo</option>
-              <option value="Crédito">Crédito</option> 
+              <option value="Credito">Crédito</option> 
             </select>
           </div>
           <div className="mb-4">
