@@ -90,3 +90,4 @@ El proyecto se encuentra en un MVP inicial y funcional. Actualmente soporta el u
 | UX/UI  | Ailén Martinez  | [![linkedin]](https://www.linkedin.com/in/ail%C3%A9ndaniela-martinezrosica/)  |
 | UX/UI  | Augusto Atempa  | [![linkedin]](http://www.linkedin.com/in/augusto-atempa-0994b1254)  |
 
+[linkedin]: https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white
