@@ -9,13 +9,13 @@ const serviceSchema = new mongoose.Schema(
 		description: {
 			type: String,
 		},
-		image: {
+		category: {
 			type: String,
-<<<<<<< HEAD
-=======
 			/* type: mongoose.Schema.Types.ObjectId,
 			ref: 'Category', */
->>>>>>> da31081bdb990d3ffead5b6e84435b453e06cccf
+		},
+		createdBy: {
+			type: String
 		},
 	},
 	{ timestamps: true }
