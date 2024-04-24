@@ -7,9 +7,12 @@ import { ClientHistorial } from "../pages/ClientHistory/ClientHistory.jsx";
 
 import {ProfileProvider } from "./../pages/provider/ProfileProvider.jsx";
 import { HistorialProvider } from "../pages/provider/HistorialProvider.jsx";
-export default function AuthRouter() {
+import { PerfilUsuario } from "../pages/PerfilUsuario/PerfilUsuario.jsx";
 
-  
+
+
+
+export default function AuthRouter() { 
   return (
     <Routes>
       {/* HOME CLIENT */}
@@ -20,8 +23,10 @@ export default function AuthRouter() {
       {/* PROVIDER */}
       <Route path="/home-provider" element={<ProfileProvider />}/>
       <Route path="/historial-provider" element={<HistorialProvider />}/>
-      <Route path="/*" element={<NotFound />} /> 
       <Route path='/empleado-historial' element={<ClientHistorial />} />
+      <Route path='/perfil-usuario' element={<PerfilUsuario />} />
+      <Route path="/*" element={<NotFound />} /> 
+
     </Routes>
   );
 }
