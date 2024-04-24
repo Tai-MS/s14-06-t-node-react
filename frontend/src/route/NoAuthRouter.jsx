@@ -3,7 +3,7 @@ import { Landing } from "../pages/landing/Landing.jsx";
 import { Login } from "../pages/auth/Login.jsx";
 //import { Register } from "../pages/auth/Register.jsx";
 import { NotFound } from "../pages/NotFound.jsx";
-import FormRegister from "../componentes/Registration/Register.jsx";
+// import FormRegister from "../componentes/Registration/Register.jsx";
 import { Register } from "../pages/auth/Register.jsx";
 
 // import { NotFound } from "../pages/not-found/NotFound";
