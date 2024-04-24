@@ -44,7 +44,7 @@ const FormLogin = () => {
   return (
     <>
       <section
-        className="relative w-full h-[90vh] font__form rounded-b-xl 
+        className="relative w-full h-[80vh] font__form rounded-b-xl 
     background__form flex justify-center items-center"
       >
         <img
