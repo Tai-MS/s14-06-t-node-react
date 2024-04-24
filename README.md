@@ -1,6 +1,6 @@
 # s14-06-t-node-react
 ## Demo
-https://servihogar1.vercel.app/
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)  https://servihogar1.vercel.app/
 
 ## Estado
 El proyecto se encuentra en un MVP inicial y funcional. Actualmente soporta el uso desde dispositivos móviles, tablets, laptops y PCs siendo parcialmente responsive. Permite registrarse e iniciar sesión, así como cerrar sesión. 
@@ -91,3 +91,4 @@ El proyecto se encuentra en un MVP inicial y funcional. Actualmente soporta el u
 | UX/UI  | Augusto Atempa  | [![linkedin]](http://www.linkedin.com/in/augusto-atempa-0994b1254)  |
 
 [linkedin]: https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white
+[github]: https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white
