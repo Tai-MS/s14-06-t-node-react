@@ -1,5 +1,6 @@
 import { HeaderLanding } from "../../componentes/landing/HeaderLanding";
 import { IdRegisterButton } from "../../componentes/landing/IdRegisterButton";
+import { FooterContact } from "../../componentes/share/FooterContact";
 
 export const Landing = () => {
   return (
@@ -19,33 +20,33 @@ export const Landing = () => {
           </div>
         </div>
 
-        <div className="mt-4 flex justify-center ">
+        <div className="mt-8 flex justify-center ">
           <img src="/images/buscadorProv.svg" alt="" />
         </div>
         <div className="mt-8">
-          <p className="text-left">
+          <p className="text-center w-full">
             Forma parte del equipo de profesionales de ServiHogar. Vos elegís
             que días y horarios podes brindar tus servicios ¡Inscríbete gratis
             en nuestra página y comienza a trabajar !
           </p>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex justify-center">
           <IdRegisterButton />
         </div>
 
         <div className="mt-8">
           <h2 className="font-bold">Preguntas frecuentes</h2>
           <div className="mt-4">
-            <img src="/images/quetions/q1.svg" alt="1" />
-            <img src="/images/quetions/q2.svg" alt="2" />
-            <img src="/images/quetions/q3.svg" alt="3" />
-            <img src="/images/quetions/q4.svg" alt="4" />
-            <img src="/images/quetions/q5.svg" alt="5" />
+            <img src="/images/quetions/q1.svg" alt="1" className="w-full"/>
+            <img src="/images/quetions/q2.svg" alt="2" className="w-full"/>
+            <img src="/images/quetions/q3.svg" alt="3" className="w-full"/>
+            <img src="/images/quetions/q4.svg" alt="4" className="w-full"/>
+            <img src="/images/quetions/q5.svg" alt="5" className="w-full"/>
           </div>
         </div>
 
         <div className="mt-8">
-          <img src="/images/quetions/footer.svg" alt="" />
+          <FooterContact/>
         </div>
       </div>
     </>
