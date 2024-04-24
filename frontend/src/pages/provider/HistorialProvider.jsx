@@ -44,7 +44,7 @@ export const HistorialProvider = () => {
                     historial.provided_services.length >0?    
                     historial.provided_services.map(( service)=>
                     (<CardHistoryProvider key={service._id} service={service}/>)): 
-                    <h2 className="bg-[white] m-4 rounded-lg text-center">No ha brindado servicios aun.</h2>
+                    <h2 className="bg-[white] m-4 rounded-lg text-center w-[95%]">No ha brindado servicios aun.</h2>
                     }
                 </div>
             </section>
