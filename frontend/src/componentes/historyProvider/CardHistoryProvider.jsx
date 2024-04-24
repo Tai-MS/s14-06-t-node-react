@@ -1,8 +1,14 @@
-export const CardHistoryProvider = ({ service }) => {
-  const { title, description, category } = service;
+
+export const CardHistoryProvider = ( {service}) => {
+  const { title, description, createdBy, category } = service;
+  console.log(title, description, createdBy, category);
   return (
     <div className="bg-[#FAFFFB] w-[95%] p-4 mx-2 my-2 rounded-xl leading-8 md:w-[30%]">
       <p>{title}</p>
+      <p>
+        <span className="font-semibold text-[1rem]">Cliente: </span>
+        {createdBy}
+      </p>
       <p>
         <span className="font-semibold text-[1rem]">Descripción: </span> {description}
       </p>

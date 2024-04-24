@@ -39,11 +39,11 @@ export const HistorialProvider = () => {
                     En esta sección verás tus trabajos realizados</p>
                     <p className="text-[14px] font-normal text-left">En esta sección podras ver tus trabajos realizados y calificar a tu empleador. </p>
                 </div>
-                <div className="w-[95%] flex flex-col ">
+                <div className="w-[95%] flex flex-col md:flex md:flex-row md:gap-5 md:justify-center md:flex-wrap">
                 {historial.provided_services &&
-                    historial.provided_services.length>0?    
-                    historial.provided_services.map((index, service)=>
-                    (<CardHistoryProvider key={index} service={service}/>)): 
+                    historial.provided_services.length >0?    
+                    historial.provided_services.map(( service)=>
+                    (<CardHistoryProvider key={service._id} service={service}/>)): 
                     <h2 className="bg-[white] m-4 rounded-lg text-center">No ha brindado servicios aun.</h2>
                     }
                 </div>
