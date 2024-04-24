@@ -59,8 +59,11 @@ export const useAuthStore = () => {
        
       });
       
-      if(data?.user?.rol =='CLIENT'){
-        navigateTo(`/homeclient`)
+      if(data?.user?.rol ==='CLIENT'){
+        navigateTo(`/homeclient`);
+      }
+      if(data?.user?.rol==='PROVIDER'){
+        navigateTo(`/home-provider`);
       }
     } catch (error) {
       console.log(error) 
