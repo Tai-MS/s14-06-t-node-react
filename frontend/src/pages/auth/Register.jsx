@@ -10,7 +10,6 @@ export const Register = () => {
       <>
         <HeaderLanding showMenu={false}/>
         <FormRegister/>
-        <RegisterProvider/>
     
 </>
   );

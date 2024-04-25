@@ -5,7 +5,7 @@
 export const NotFound = () => {
     return (
       <>
-    <p>Pagina no encontrada</p>
+    <p className="text-[20px] text-center my-5 mx-auto">Pagina no encontrada</p>
 </>
   );
 };
