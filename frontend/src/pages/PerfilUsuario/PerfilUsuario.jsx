@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { HeaderLanding } from "../../componentes/landing/HeaderLanding.jsx";
-import React, { useContext } from 'react';
+import { useEffect, useState } from 'react';
+import { HeaderProvider } from '../../componentes/share/HeaderProvider.jsx';
+import  { useContext } from 'react';
 import UserContext from "../../componentes/Registration/UserContext.jsx"; // Importar el contexto de usuario
-
+import { useAuthStore } from "../../hooks/useAuthStore";
 export const PerfilUsuario = () => {
   const { userData, setUserData } = useContext(UserContext); // Obtener los datos del usuario y la función para establecer los datos del contexto
   const [editing, setEditing] = useState(false); // Estado para controlar si se está editando el perfil
-
+  const { editUser, user} =useAuthStore();
   const handleModificarClick = () => {
     // Cambiar el estado de "editing" a true para habilitar la edición del perfil
     setEditing(true);
@@ -14,27 +14,43 @@ export const PerfilUsuario = () => {
 
   const handleSaveChanges = () => {
     // lógica para guardar los cambios en los datos del usuario
-    console.log('Guardar cambios');
-    //cambiar el estado de "editing" a false para volver al modo de visualización
+    const combinedValues={
+      _id: user._id,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      rol:user.rol,
+      city: user.city,
+      service_type: userData.service_type,
+      type_of_payment: userData.type_of_payment,
+      phone: userData.phone,
+      address:user.address
+    }; 
+    console.log('Guardar cambios', combinedValues);
+
+    editUser(combinedValues); 
     setEditing(false);
   };
-
   const handleCancelEdit = () => {
     // Cancelar la edición, restaurando los datos originales del usuario y cambiando el estado de "editing" a false
     setEditing(false);
   };
 
+
   return (
     <>
-      <HeaderLanding />
+      <HeaderProvider showMenu={true} />
       <div className="w-full mt-4 flex items-center justify-center ">
-      <div className="w-[328px] h-[1048px] bg-gradient-to-b from-green-200 to-neutral-400 rounded-xl">
+      <div className="w-[90%] md:w-[50%]  bg-gradient-to-b
+       from-green-200 to-neutral-400 rounded-xl
+       flex flex-col justify-center items-center gap-5 p-5">
+        
         <div className="px-6 py-4">
-          <div className="w-[140px] h-[34.58px] text-neutral-900 justify-center text-2xl font-bold font-['Manrope']">{`Hola ${userData.firstName} ${userData.lastName}`}</div>
-          <p className="text-neutral-900 text-base font-semibold font-['Manrope']">Mi perfil</p>
+          <div className="w-[95%]  text-neutral-900 justify-center text-2xl font-bold font-['Manrope']">{`Hola ${userData.firstName} ${userData.lastName}`}</div>
+          <p className="text-neutral-900 text-base font-semibold font-['Manrope']">
+          Mi perfil</p>
         </div>
 
-        <div className="w-[312px] h-[245px] bg-gray-50 rounded-xl">
+        <div className="w-[80%]  bg-gray-50 rounded-xl">
           <div className="px-6 pt-4 pb-2">
           <div className="text-neutral-900 text-base font-medium font-['Manrope']">Datos personales
           </div>
@@ -127,7 +143,7 @@ export const PerfilUsuario = () => {
 
         
 
-        <div className="w-[312px] h-[245px] bg-gray-50 rounded-xl">
+        <div className="w-[80%]  bg-gray-50 rounded-xl">
           <div className="px-6 pt-4 pb-2">
           <div className="text-neutral-900 text-base font-medium font-['Manrope']">Servicio registrado
           </div>
@@ -173,7 +189,7 @@ export const PerfilUsuario = () => {
         </div>
         </div>
 
-        <div className="w-[312px] h-[245px] bg-gray-50 rounded-xl">
+        <div className="w-[80%]  bg-gray-50 rounded-xl">
           <div className="px-6 pt-4 pb-2">
           <div className="text-neutral-900 text-base font-medium font-['Manrope']">Medios de pago
           </div>

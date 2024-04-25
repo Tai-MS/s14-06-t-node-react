@@ -23,8 +23,8 @@ export default function AuthRouter() {
       {/* PROVIDER */}
       <Route path="/home-provider" element={<ProfileProvider />}/>
       <Route path="/historial-provider" element={<HistorialProvider />}/>
-      <Route path='/empleado-historial' element={<ClientHistorial />} />
-      <Route path='/perfil-usuario' element={<PerfilUsuario />} />
+      <Route path="/empleado-historial" element={<ClientHistorial />} />
+      <Route path="/perfil-usuario" element={<PerfilUsuario />} />
       <Route path="/*" element={<NotFound />} /> 
 
     </Routes>

@@ -104,7 +104,38 @@ export const useAuthStore = () => {
     dispatch(onLogout())
     navigateTo('/')
   }
+  const editUser = async (userEdited) => {
+    let miStorage = window.localStorage.token
+
+    const config = {
+      headers: {
+        "x-token": miStorage
+      }
+    }
+    console.log(config)
+    console.log('userEdited', userEdited);
+    try {
+      const { data } = await axios.put(
+        `${import.meta.env.VITE_API_URL}/users/:${userEdited._id}`,
+        {
+          userEdited
+        }, 
+        config
+      )
+      console.log(data)
+      Swal.fire('Actualización de datos exitosa!')
+    } catch (error) {
+       Swal.fire({
+           icon: 'error',
+           title: 'Oops...',
+           text: "No se pudo realizar la actualización de datos del usuario."
+         })
+      console.log(error.message)
+    }
+  }
+
   return {
+    editUser,
     handleLogout,
     status,
     user,
