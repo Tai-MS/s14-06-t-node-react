@@ -1,4 +1,5 @@
 import { SearchCard } from "../../componentes/search/SearchCard";
+import { FooterContact } from "../../componentes/share/FooterContact";
 import { HeaderClient } from "../../componentes/share/HeaderClient";
 import { useLocation } from 'react-router-dom';
 
@@ -26,6 +27,9 @@ export const SearchPage = () => {
       {servicios && servicios.servicio && servicios.servicio.map((servicio, index) => (
         <SearchCard key={index} servicio={servicio} />
       ))}
+        <div className="mt-8">
+          <FooterContact/>
+        </div>
     </>
   );
 };
