@@ -8,6 +8,7 @@ const initialUserData = {
     email: '',
     password: '',
     rol: 'CLIENT',
+    address:'',
 };
 
 const UserContext = createContext();

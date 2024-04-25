@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 
-import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store/auth/authSlice'
+import { clearErrorMessage, onChecking, onLogin, onLogout, updateUser } from '../store/auth/authSlice'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 
@@ -105,24 +105,24 @@ export const useAuthStore = () => {
     navigateTo('/')
   }
   const editUser = async (userEdited) => {
-    let miStorage = window.localStorage.token
+    const token=localStorage.getItem('token')
 
     const config = {
       headers: {
-        "x-token": miStorage
+        "x-token": token
       }
     }
     console.log(config)
     console.log('userEdited', userEdited);
     try {
       const { data } = await axios.put(
-        `${import.meta.env.VITE_API_URL}/users/:${userEdited._id}`,
-        {
-          userEdited
-        }, 
+        `${import.meta.env.VITE_API_URL}/users/${userEdited._id}`,
+        
+        userEdited, 
         config
       )
       console.log(data)
+      dispatch(updateUser(userEdited));
       Swal.fire('Actualización de datos exitosa!')
     } catch (error) {
        Swal.fire({

@@ -1,38 +1,89 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { HeaderProvider } from '../../componentes/share/HeaderProvider.jsx';
 import  { useContext } from 'react';
 import UserContext from "../../componentes/Registration/UserContext.jsx"; // Importar el contexto de usuario
 import { useAuthStore } from "../../hooks/useAuthStore";
 export const PerfilUsuario = () => {
   const { userData, setUserData } = useContext(UserContext); // Obtener los datos del usuario y la función para establecer los datos del contexto
-  const [editing, setEditing] = useState(false); // Estado para controlar si se está editando el perfil
+  const [editing, setEditing] = useState(''); // Estado para controlar si se está editando el perfil
   const { editUser, user} =useAuthStore();
-  const handleModificarClick = () => {
+  const [firstName, setFirstName]=useState(user.firstName);
+  const [lastName, setLastName]=useState(user.lastName);
+  const [address, setAddress]=useState(user.address);
+  const [phone, setPhone]= useState(user.phone);
+  const [service, setService]=useState(user.service_type);
+  const [payment, setPayment]=useState(user.type_of_payment);
+  const handleModificarPersonalData = () => {
     // Cambiar el estado de "editing" a true para habilitar la edición del perfil
-    setEditing(true);
+    setEditing('Personal');
   };
-
-  const handleSaveChanges = () => {
+  const handleModificarService=()=>{
+    setEditing('service');
+  }
+  const handleSaveChangesPersonalData = () => {
     // lógica para guardar los cambios en los datos del usuario
     const combinedValues={
       _id: user._id,
       firstName: userData.firstName,
       lastName: userData.lastName,
+      phone: userData.phone,
+      address:userData.address,
       rol:user.rol,
       city: user.city,
-      service_type: userData.service_type,
-      type_of_payment: userData.type_of_payment,
-      phone: userData.phone,
-      address:user.address
+      service_type: user.service_type,
+      type_of_payment: user.type_of_payment,
+      
     }; 
     console.log('Guardar cambios', combinedValues);
 
     editUser(combinedValues); 
-    setEditing(false);
+    setEditing('');
   };
+  const handleSaveChangesService = () => {
+    // lógica para guardar los cambios en los datos del usuario
+    const combinedValues={
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      phone: user.phone,
+      address:user.address,
+      rol:user.rol,
+      city: user.city,
+      service_type: userData.service_type,
+      type_of_payment: user.type_of_payment,
+      
+    }; 
+    console.log('Guardar cambios', combinedValues);
+
+    editUser(combinedValues); 
+    setEditing('');
+  };
+  const handleModificarPayment=()=>{
+    setEditing('payment');
+  }
+  const handleSaveChangesPayment = () => {
+    // lógica para guardar los cambios en los datos del usuario
+    const combinedValues={
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      phone: user.phone,
+      address:user.address,
+      rol:user.rol,
+      city: user.city,
+      service_type: user.service_type,
+      type_of_payment: userData.type_of_payment,
+      
+    }; 
+    console.log('Guardar cambios', combinedValues);
+
+    editUser(combinedValues); 
+    setEditing('');
+  };
+
   const handleCancelEdit = () => {
     // Cancelar la edición, restaurando los datos originales del usuario y cambiando el estado de "editing" a false
-    setEditing(false);
+    setEditing('');
   };
 
 
@@ -45,24 +96,27 @@ export const PerfilUsuario = () => {
        flex flex-col justify-center items-center gap-5 p-5">
         
         <div className="px-6 py-4">
-          <div className="w-[95%]  text-neutral-900 justify-center text-2xl font-bold font-['Manrope']">{`Hola ${userData.firstName} ${userData.lastName}`}</div>
+          <div className="w-[95%]  text-neutral-900 justify-center text-2xl 
+          font-bold font-['Manrope']">{`Hola ${user.firstName} ${user.lastName}`}</div>
           <p className="text-neutral-900 text-base font-semibold font-['Manrope']">
           Mi perfil</p>
         </div>
 
         <div className="w-[80%]  bg-gray-50 rounded-xl">
           <div className="px-6 pt-4 pb-2">
-          <div className="text-neutral-900 text-base font-medium font-['Manrope']">Datos personales
+          <div className="text-neutral-900 
+          text-base font-medium font-['Manrope']">Datos personales
           </div>
           {/* Campos para el nombre */}
            <div className="flex items-center justify-between">
             <span className="text-neutral-900 text-base font-normal font-['Manrope'] 1px">Nombre</span>
-            {editing ? (
+            {editing=='Personal' ? (
               <input
                 type="text"
                 className="text-gray-600 text-sm border-b border-gray-500"
-                value={userData.firstName}
-                onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+                value={firstName}
+                onChange={(e) => {setFirstName(e.target.value);
+                setUserData({ ...userData, firstName: e.target.value })}}
               />
             ) : (
               <span className="text-gray-600 text-sm">{`${userData.firstName}`}</span>
@@ -72,12 +126,14 @@ export const PerfilUsuario = () => {
           {/* Campos para el apellido */}
           <div className="flex items-center justify-between">
             <span className="text-neutral-900 text-base font-normal font-['Manrope']">Apellido</span>
-            {editing ? (
+            {editing=='Personal' ? (
               <input
                 type="text"
                 className="text-gray-600 text-sm border-b border-gray-500"
-                value={userData.lastName}
-                onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
+                value={lastName}
+                onChange={(e) =>{
+                  setLastName(e.target.value);
+                setUserData({ ...userData, lastName: e.target.value })}}
               />
             ) : (
               <span className="text-gray-600 text-sm">{`${userData.lastName}`}</span>
@@ -86,27 +142,35 @@ export const PerfilUsuario = () => {
 
           {/* Campos para el email */}
           <div className="flex items-center justify-between">
-            <span className="text-neutral-900 text-base font-normal font-['Manrope']">Email</span>
-            {editing ? (
+            <span className="text-neutral-900 text-base font-normal font-['Manrope']">Dirección</span>
+            {editing=='Personal' ? (
               <input
-                type="email"
+                type="text"
                 className="text-gray-600 text-sm border-b border-gray-500"
-                value={userData.email}
-                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+                value={address}
+                onChange={(e) => {
+                  setAddress(e.target.value);
+                  setUserData({ ...userData, address: e.target.value })}
+                  }
               />
             ) : (
-              <span className="text-gray-600 text-sm">{`${userData.email}`}</span>
+              <span className="text-gray-600 text-sm">{`${userData.address}`}</span>
             )}
           </div>
 
           <div className="flex items-center justify-between">
             <span className="text-neutral-900 text-base font-normal font-['Manrope']">Teléfono</span>
-            {editing ? (
+            {editing=='Personal' ? (
               <input
-                type="phone"
+                type="tel"
                 className="text-gray-600 text-sm border-b border-gray-500"
-                value={userData.phone}
-                onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
+                value={phone}
+                placeholder={user.phone}
+                onChange={(e) => {
+                  setPhone(e.target.value)
+                  setUserData({ ...userData, phone: e.target.value })
+                  }
+                  }
               />
             ) : (
               <span className="text-gray-600 text-sm">{`${userData.phone}`}</span>
@@ -114,11 +178,11 @@ export const PerfilUsuario = () => {
           </div>
           {/* Agrega los campos restantes para los datos del usuario con una lógica similar */}
           <div className="flex justify-end mt-4">
-            {editing ? (
+            {editing=='Personal' ? (
               <>
                 <button
                   className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
-                  onClick={handleSaveChanges} // Guardar los cambios
+                  onClick={handleSaveChangesPersonalData} // Guardar los cambios
                 >
                   Guardar
                 </button>
@@ -132,7 +196,7 @@ export const PerfilUsuario = () => {
             ) : (
               <button
                 className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                onClick={handleModificarClick} // Habilitar la edición
+                onClick={handleModificarPersonalData} // Habilitar la edición
               >
                 Modificar
               </button>
@@ -149,12 +213,15 @@ export const PerfilUsuario = () => {
           </div>
           {/* Campos para el servicio */}
            <div className="flex items-center justify-between">
-            {editing ? (
+            {editing=='service' ? (
               <input
                 type="text"
                 className="text-gray-600 text-sm border-b border-gray-500"
-                value={userData.service_type}
-                onChange={(e) => setUserData({ ...userData, service_type: e.target.value })}
+                value={service}
+                onChange={(e) => {
+                  setService(e.target.value)
+                  setUserData({ ...userData, service_type: e.target.value })}}
+
               />
             ) : (
               <span className="text-gray-600 text-sm">{`${userData.service_type}`}</span>
@@ -162,11 +229,11 @@ export const PerfilUsuario = () => {
           </div>
 
           <div className="flex justify-end mt-4">
-            {editing ? (
+            {editing=='service' ? (
               <>
                 <button
                   className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
-                  onClick={handleSaveChanges} // Guardar los cambios
+                  onClick={handleSaveChangesService} // Guardar los cambios
                 >
                   Guardar
                 </button>
@@ -180,7 +247,7 @@ export const PerfilUsuario = () => {
             ) : (
               <button
                 className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                onClick={handleModificarClick} // Habilitar la edición
+                onClick={handleModificarService} // Habilitar la edición
               >
                 Modificar
               </button>
@@ -195,12 +262,14 @@ export const PerfilUsuario = () => {
           </div>
           {/* Campos para medios de pago */}
            <div className="flex items-center justify-between">  
-            {editing ? (
+            {editing=='payment' ? (
               <input
                 type="text"
                 className="text-gray-600 text-sm border-b border-gray-500"
-                value={userData.type_of_payment}
-                onChange={(e) => setUserData({ ...userData, type_of_payment: e.target.value })}
+                value={payment}
+                onChange={(e) => {
+                  setPayment(e.target.value);
+                  setUserData({ ...userData, type_of_payment: e.target.value })}}
               />
             ) : (
               <span className="text-gray-600 text-sm">{`${userData.type_of_payment}`}</span>
@@ -208,11 +277,11 @@ export const PerfilUsuario = () => {
           </div>
 
           <div className="flex justify-end mt-4">
-            {editing ? (
+            {editing=='payment' ? (
               <>
                 <button
                   className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
-                  onClick={handleSaveChanges} // Guardar los cambios
+                  onClick={handleSaveChangesPayment} // Guardar los cambios
                 >
                   Guardar
                 </button>
@@ -226,7 +295,7 @@ export const PerfilUsuario = () => {
             ) : (
               <button
                 className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                onClick={handleModificarClick} // Habilitar la edición
+                onClick={handleModificarPayment} // Habilitar la edición
               >
                 Modificar
               </button>
