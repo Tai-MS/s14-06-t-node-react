@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'; // Importa useContext
+import  { useContext } from 'react'; // Importa useContext
 import { useFormik } from 'formik';
+import Swal from 'sweetalert2'
+
 import { useNavigate } from 'react-router-dom';
 import UserContext from './UserContext'; // Agrega la importación de UserProvider
-
+import axios from 'axios';
 const FormRegister = () => {
-  const { setUserData } = useContext(UserContext); // Elimina userData, no lo necesitamos aquí
+  const { userData, setUserData } = useContext(UserContext); // Elimina userData, no lo necesitamos aquí
   const history = useNavigate();
 
   const submitForm = async (values) => {
@@ -15,8 +17,14 @@ const FormRegister = () => {
       if (values.rol === 'PROVIDER') {
         history(`/registro-proveedor`);
       } else {
-        // Redirigir al siguiente paso si el usuario es cliente
-        history(`/registro-cliente`);
+        const combinedValues = { 
+          ...userData, 
+          ...values,
+        }
+        await axios.post(`${import.meta.env.VITE_API_URL}/users/register`, combinedValues);
+        Swal.fire('Registro exitoso, ahora puedes iniciar sesión!')
+
+        history(`/`);
       }
     } catch (error) {
       console.error('Error al registrar:', error);
@@ -105,4 +113,3 @@ const FormRegister = () => {
 };
 
 export default FormRegister;
-

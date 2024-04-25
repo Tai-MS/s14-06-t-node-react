@@ -24,10 +24,10 @@ export const PerfilUsuario = () => {
     // lógica para guardar los cambios en los datos del usuario
     const combinedValues={
       _id: user._id,
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      phone: userData.phone,
-      address:userData.address,
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+      address:address,
       rol:user.rol,
       city: user.city,
       service_type: user.service_type,
@@ -49,7 +49,7 @@ export const PerfilUsuario = () => {
       address:user.address,
       rol:user.rol,
       city: user.city,
-      service_type: userData.service_type,
+      service_type: service,
       type_of_payment: user.type_of_payment,
       
     }; 
@@ -72,7 +72,7 @@ export const PerfilUsuario = () => {
       rol:user.rol,
       city: user.city,
       service_type: user.service_type,
-      type_of_payment: userData.type_of_payment,
+      type_of_payment: payment,
       
     }; 
     console.log('Guardar cambios', combinedValues);
@@ -119,7 +119,7 @@ export const PerfilUsuario = () => {
                 setUserData({ ...userData, firstName: e.target.value })}}
               />
             ) : (
-              <span className="text-gray-600 text-sm">{`${userData.firstName}`}</span>
+              <span className="text-gray-600 text-sm">{`${user.firstName}`}</span>
             )}
           </div>
 
@@ -136,7 +136,7 @@ export const PerfilUsuario = () => {
                 setUserData({ ...userData, lastName: e.target.value })}}
               />
             ) : (
-              <span className="text-gray-600 text-sm">{`${userData.lastName}`}</span>
+              <span className="text-gray-600 text-sm">{`${user.lastName}`}</span>
             )}
           </div>
 
@@ -154,7 +154,7 @@ export const PerfilUsuario = () => {
                   }
               />
             ) : (
-              <span className="text-gray-600 text-sm">{`${userData.address}`}</span>
+              <span className="text-gray-600 text-sm">{`${user.address}`}</span>
             )}
           </div>
 
@@ -165,7 +165,6 @@ export const PerfilUsuario = () => {
                 type="tel"
                 className="text-gray-600 text-sm border-b border-gray-500"
                 value={phone}
-                placeholder={user.phone}
                 onChange={(e) => {
                   setPhone(e.target.value)
                   setUserData({ ...userData, phone: e.target.value })
@@ -173,7 +172,7 @@ export const PerfilUsuario = () => {
                   }
               />
             ) : (
-              <span className="text-gray-600 text-sm">{`${userData.phone}`}</span>
+              <span className="text-gray-600 text-sm">{`${user.phone}`}</span>
             )}
           </div>
           {/* Agrega los campos restantes para los datos del usuario con una lógica similar */}
@@ -224,7 +223,7 @@ export const PerfilUsuario = () => {
 
               />
             ) : (
-              <span className="text-gray-600 text-sm">{`${userData.service_type}`}</span>
+              <span className="text-gray-600 text-sm">{`${user.service_type}`}</span>
             )}
           </div>
 
@@ -272,7 +271,7 @@ export const PerfilUsuario = () => {
                   setUserData({ ...userData, type_of_payment: e.target.value })}}
               />
             ) : (
-              <span className="text-gray-600 text-sm">{`${userData.type_of_payment}`}</span>
+              <span className="text-gray-600 text-sm">{`${user.type_of_payment}`}</span>
             )}
           </div>
 

@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import  { useContext } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import UserContext  from './UserContext' // Importar el contexto de usuario como valor predeterminado
+import Swal from 'sweetalert2'
 
 
 export const RegisterProvider = () => {
@@ -22,8 +23,9 @@ export const RegisterProvider = () => {
       };
       console.log(combinedValues)
       // Enviar los datos del cliente al backend
-      await axios.post('https://s14-06-t-node-react.onrender.com/api/users/register', combinedValues);
-      alert('Registro exitoso');
+      await axios.post(`${import.meta.env.VITE_API_URL}/users/register`, combinedValues);
+      Swal.fire('Registro exitoso, ahora puedes iniciar sesión!')
+
       history(`/`);
     } catch (error) {
       console.error('Error al registrar:', error);
