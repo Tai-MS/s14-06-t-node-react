@@ -1,5 +1,3 @@
-# s14-06-t-node-react
-
 # Introducción:
 
 
@@ -30,7 +28,7 @@ El proyecto se encuentra en un MVP inicial y funcional. Actualmente soporta el u
 | Front End    | ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white) |
 | Back End     | ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge)|
 | Base de datos| ![MongoDB Atlas DB](https://img.shields.io/badge/mongodb%20atlas-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)|
-| Deployment   | ![Vercel](https://servihogar1.vercel.app/) |
+| Deployment   | [![vercel]](https://servihogar1.vercel.app/)  |
 | Others       | ![GIT](https://img.shields.io/badge/Git-fc6d26?style=for-the-badge&logo=git&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)                                          |
 
 ### Tecnologías
