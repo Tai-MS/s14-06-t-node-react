@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 export const SearchPage = () => {
   const location = useLocation();
-  const servicios = location.state?.servicio; // servicios es un array de objetos
+  const servicios = location.state; // servicios es un array de objetos
 
   console.log('Los servicios recibidos son:', servicios);
 

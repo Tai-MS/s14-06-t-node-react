@@ -8,29 +8,30 @@ import "slick-carousel/slick/slick-theme.css";
 
 export const CarruselServices = ({ imagenes }) => {
   const navigate = useNavigate();
-  console.log(
-    "Contenido del objeto imagenes:",
-    JSON.stringify(imagenes, null, 2)
-  );
+  // console.log(
+  //   "Contenido del objeto imagenes:",
+  //   JSON.stringify(imagenes, null, 2)
+  // );
   const [mostrarImagenes, setMostrarImagenes] = useState(false);
   const [servicioSeleccionado, setServicioSeleccionado] = useState(null);
-  
-const handleImagenClick = async (imagenId) => {
-  try {
-    const response = await axios.get(
-      `https://s14-06-t-node-react.onrender.com/api/users/category/${imagenId}`
-    );
 
-    console.log("Información obtenida:", response.data);
-    setServicioSeleccionado(response.data);
-    navigate("/resultados-servicio", { state: { servicio: response.data } });
-  } catch (error) {
-    console.error("Error al obtener información:", error);
-  }
+  const handleImagenClick = async (imagenId) => {
+    console.log("b "+ imagenId)
+    navigate("/resultados-servicio", { state: { servicio: imagenId } });
+    // try {
+    //   const response = await axios.get(
+    //     `https://s14-06-t-node-react.onrender.com/api/users/${imagenId}/add-service`
+    //   );
 
-  setMostrarImagenes(true);
-};
+    //   console.log("Información obtenida:", response.data);
+    //   setServicioSeleccionado(response.data);
+    //   navigate("/resultados-servicio", { state: { servicio: response.data } });
+    // } catch (error) {
+    //   console.error("Error al obtener información:", error);
+    // }
 
+    setMostrarImagenes(true);
+  };
 
   console.log(servicioSeleccionado);
 
@@ -65,9 +66,9 @@ const handleImagenClick = async (imagenId) => {
         </div>
       )}
       {mostrarImagenes && (
-        <div className="mt-4">
+        <div className="mt-4 ml-4">
           {/* Mostrar el título del carrusel */}
-          <span className="text-lg font-semibold leading-tight text-left text-customGreen">
+          <span className="text-lg font-semibold leading-tight text-center text-customGreen block">
             ¿Qué servicio buscas?
           </span>
 
