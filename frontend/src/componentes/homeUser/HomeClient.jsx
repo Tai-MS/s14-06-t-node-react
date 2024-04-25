@@ -7,52 +7,63 @@ import { FooterContact } from "../share/FooterContact.jsx";
 export const HomeClient = () => {
   const [carruselImages, setCarruselImages] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const categories = await fetchCategoryIds();
-        console.log("Categorías obtenidas:", categories);
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const categories = await fetchCategoryIds();
+      console.log("Categorías obtenidas:", categories);
 
-        const categoryToImageIdMap = {};
-        categories.forEach((category) => {
-          categoryToImageIdMap[category.name] = category._id;
-        });
+      // Crear un mapa de categoría a ID
+      const categoryToImageIdMap = {};
+      categories.forEach((category) => {
+        categoryToImageIdMap[category.name] = category._id;
+      });
 
-        const updatedImages = CarruselImg.map((image) => {
-          const categoryId = categories.find(
-            (category) => category.name === image.alt
+      // Actualizar las imágenes del carrusel (CarruselImg)
+      const updatedImages = CarruselImg.map((image) => {
+        // Verificar el alt de la imagen para categorías específicas
+        if (image.alt === "Pintor" || image.alt === "Limpieza" || image.alt === "Plomero") {
+          // Filtrar categorías del backend que coincidan con la categoría de la imagen
+          const matchingCategories = categories.filter(
+            (category) => category.category === image.alt
           );
-          if (categoryId) {
-            return { ...image, id: categoryToImageIdMap[categoryId.name] };
-          } else {
-            return image;
-          }
-        });
 
-        setCarruselImages(updatedImages);
-      } catch (error) {
-        console.error("Error al obtener IDs de categorías:", error);
-      }
-    };
+          // Obtener los IDs de las categorías coincidentes
+          const matchingCategoryIds = matchingCategories.map((category) => category);
 
-    fetchData();
-  }, []);
+          // Asignar los IDs de las categorías a la imagen
+          return { ...image, id: matchingCategoryIds };
+        } else {
+          // Mantener la imagen sin cambios si no corresponde a una categoría específica
+          return image;
+        }
+      });
 
+      setCarruselImages(updatedImages);
+    } catch (error) {
+      console.error("Error al obtener IDs de categorías:", error);
+    }
+  };
+
+  fetchData();
+}, []);
+
+  
   const CarruselImg = [
     {
       id: "img10",
       src: "/images/CarruselServices/pintores.svg",
-      alt: "Pintores",
+      alt: "Pintor",
     },
     {
       id: "img11",
       src: "/images/CarruselServices/locksmith.svg",
-      alt: "Cerrajeros",
+      alt: "Limpieza",
     },
     {
       id: "img8",
       src: "/images/CarruselServices/gardener.svg",
-      alt: "Jardineros",
+      alt: "Plomero",
     },
     {
       id: "img7",

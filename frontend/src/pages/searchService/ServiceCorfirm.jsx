@@ -24,40 +24,33 @@ export const ServiceCorfirm = () => {
           </div>
           <div className="ml-4 mt-4">
             <div className=" text-sm font-normal ">
-              Le enviaremos la propuesta a Laura y en cuanto acepte te
-              avisaremos
+              El proveedor ha sido informado de tu interés en contratar sus
+              servicios
             </div>
           </div>
           <div className="mt-8 flex justify-center items-center">
             <img src="/images/pedidoConfirmado.svg" alt="pedido confirmado" />
           </div>
-          <div className="px-4">
-            <div className="flex flex-row ">
-              <label htmlFor="Perfil Proveedor" className="font-semibold">Perfil:</label>
-              <span id="perfilProveedor" className="ml-1"> Laura</span>
-            </div>
-          </div>
 
           <div className="px-4">
             <div className="flex flex-row ">
               {/* <label htmlFor="Perfil Proveedor" >Nota:</label> */}
-              <span id="perfilProveedor" className="ml-1 mt-2 text-center"> 
-              Los horarios y precio lo debes acordar con el proveedor en nuestro chat.
+              <span id="perfilProveedor" className="ml-1 mt-2 text-center">
+                Los horarios y precio lo debes acordar con el proveedor en
+                nuestro chat.
               </span>
-
             </div>
           </div>
-          
 
           <div className=" text-sm font-normal ml-6 mt-4">
             <span className="text-justify">
-          De ser necesario puedes cancelar  este pedido desde tu perfil → Historial de contrataciones
+              De ser necesario puedes cancelar este pedido desde tu perfil →
+              Historial de contrataciones
             </span>
-            </div>
-         
+          </div>
         </div>
       </div>
-      <FooterContact/>
+      <FooterContact />
     </>
   );
 };

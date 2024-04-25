@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 
-import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store/auth/authSlice'
+import { clearErrorMessage, onChecking, onLogin, onLogout, updateUser } from '../store/auth/authSlice'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 
@@ -104,7 +104,38 @@ export const useAuthStore = () => {
     dispatch(onLogout())
     navigateTo('/')
   }
+  const editUser = async (userEdited) => {
+    const token=localStorage.getItem('token')
+
+    const config = {
+      headers: {
+        "x-token": token
+      }
+    }
+    console.log(config)
+    console.log('userEdited', userEdited);
+    try {
+      const { data } = await axios.put(
+        `${import.meta.env.VITE_API_URL}/users/${userEdited._id}`,
+        
+        userEdited, 
+        config
+      )
+      console.log(data)
+      dispatch(updateUser(userEdited));
+      Swal.fire('Actualización de datos exitosa!')
+    } catch (error) {
+       Swal.fire({
+           icon: 'error',
+           title: 'Oops...',
+           text: "No se pudo realizar la actualización de datos del usuario."
+         })
+      console.log(error.message)
+    }
+  }
+
   return {
+    editUser,
     handleLogout,
     status,
     user,
