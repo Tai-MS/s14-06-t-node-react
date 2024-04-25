@@ -14,6 +14,8 @@ Una vez registrado el usuario, pueden cargar los rubros especifícos con los que
 * Registro
 Los usuarios pueden registrarse, indicando su información de contacto, y también su historia experiencia laboral.
 
+## Prototipo
+![Figma](https://www.figma.com/file/Ccr90UAlgQt5L5UHTDa0S2/s14-06-t-node-react?type=design&node-id=1-2&mode=design&t=9OF6NTR55f0eVEbT-0)
 
 ## Demo
 [![vercel]](https://servihogar1.vercel.app/)  
@@ -21,10 +23,13 @@ Los usuarios pueden registrarse, indicando su información de contacto, y tambi�
 ## Estado
 El proyecto se encuentra en un MVP inicial y funcional. Actualmente soporta el uso desde dispositivos móviles, tablets, laptops y PCs siendo parcialmente responsive. Permite registrarse e iniciar sesión, así como cerrar sesión. 
 
+
+
+
 ### Stack Tecnológico
 | Rama         | Tecnologías                                       |
 | ------------ | ------------------------------------------------- |
-| UX/UI        | ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) |
+| UX/UI        | ![Figma](https://www.figma.com/file/Ccr90UAlgQt5L5UHTDa0S2/s14-06-t-node-react?type=design&node-id=1-2&mode=design&t=9OF6NTR55f0eVEbT-0) |
 | Front End    | ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white) |
 | Back End     | ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge)|
 | Base de datos| ![MongoDB Atlas DB](https://img.shields.io/badge/mongodb%20atlas-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)|
@@ -104,8 +109,8 @@ El proyecto se encuentra en un MVP inicial y funcional. Actualmente soporta el u
 | Back-end  | Taiel Sagretti  | [![linkedin]](https://www.linkedin.com/in/taiel-sagretti/)  |
 | Back-end  | Leonardo Tolaba  | [![linkedin]](https://www.linkedin.com/in/leonardo-manuel-tolaba/)  |
 | UX/UI  | Ailén Martinez  | [![linkedin]](https://www.linkedin.com/in/ail%C3%A9ndaniela-martinezrosica/)  |
-| UX/UI  | Augusto Atempa  | [![linkedin]](http://www.linkedin.com/in/augusto-atempa-0994b1254)  |
 
 [linkedin]: https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white
 [github]: https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white
 [vercel]: https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white
+[Figma]:(https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) 
