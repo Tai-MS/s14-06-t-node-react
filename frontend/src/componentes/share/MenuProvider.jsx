@@ -15,6 +15,9 @@ export const MenuProvider = () => {
   const goToHistory =()=>{
     navigateTo('/historial-provider');
   }
+  const goToMyProfile=()=>{
+    navigateTo('/perfil-usuario');
+  }
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setShowMobileMenu(false);
@@ -42,7 +45,9 @@ export const MenuProvider = () => {
           />
           <span className="text-sm font-semibold text-base">Notificaciones</span>
         </div>
-        <div className="flex items-center space-x-2 cursor-pointer hover:text-[#383f38]">
+
+        <div className="flex items-center space-x-2 cursor-pointer hover:text-[#383f38]" 
+        onClick={goToMyProfile}>
           <img
             src="/images/mydataIcon.svg"
             alt="My data Icon"
@@ -50,7 +55,9 @@ export const MenuProvider = () => {
           />
           <span className="text-sm font-semibold text-base">Mis datos</span>
         </div>
-        <div className="flex items-center space-x-2 cursor-pointer hover:text-[#383f38]" onClick={goToHistory}>
+        
+        <div className="flex items-center space-x-2 cursor-pointer hover:text-[#383f38]" 
+        onClick={goToHistory}>
           <img
             src="/images/transactionLogIcon.svg"
             alt="My transations Icon"
